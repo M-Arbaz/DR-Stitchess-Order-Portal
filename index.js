@@ -3,7 +3,7 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const SHOP = 'dr-stitchess.myshopify.com';
+const SHOP = process.env.DR_STITCHESS_SHOP;
 const ACCESS_TOKEN = process.env.DR_STITCHESS_API_TOKEN;
 app.set('trust proxy', true);
 app.use(express.static('public'));
