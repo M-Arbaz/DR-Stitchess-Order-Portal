@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR Stitchess Order Details</title>
+
+</head>
+
+<body>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+            margin: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #333;
+        }
+ 
+        .main {
+            max-width: 850px;
+            margin: 20px auto;
+            /* background-color: yellow; */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .order-form {
+            width: 100%;
+
+        }
+
+        .order-form form {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            width: 100%;
+
+        }
+
+        .order-form input {
+            width: 80%;
+            padding: 10px 20px;
+            font-size: 20px;
+        }
+
+        .order-form button {
+            width: 20%;
+            background-color: #000;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 20px;
+            font-size: 20px;
+        }
+
+        .order-res-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .order-res-header button {
+            background-color: #000;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .order-table {
+            width: fit-content;
+            max-width: 600px;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .order-table th,
+        .order-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+
+        .order-table-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 50px;
+            margin: 20px auto;
+        }
+
+        .product-image {
+            width: 50%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-image img {
+            width: auto;
+            height: 325px;
+
+        }
+
+        .sepreate {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            position: relative;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+
+        button.remove-item {
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            color: #fff;
+            background-color: #000;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-weight: bold;
+        }
+
+        .none,.spinner1 {
+            display: none;
+        }
+        .spinner1 {
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100vw;
+            height: 100dvh;
+            background-color:#ffffff55;
+            backdrop-filter: blur(5px);
+            --webkit-backdrop-filter: blur(5px);
+            z-index: 9999;
+        }
+        .spinner {
+ width: 44px;
+ height: 44px;
+ animation: spinner-y0fdc1 2s infinite ease;
+ transform-style: preserve-3d;
+}
+
+.spinner > div {
+ background-color: rgba(0,77,255,0.2);
+ height: 100%;
+ position: absolute;
+ width: 100%;
+ border: 2px solid #004dff;
+}
+
+.spinner div:nth-of-type(1) {
+ transform: translateZ(-22px) rotateY(180deg);
+}
+
+.spinner div:nth-of-type(2) {
+ transform: rotateY(-270deg) translateX(50%);
+ transform-origin: top right;
+}
+
+.spinner div:nth-of-type(3) {
+ transform: rotateY(270deg) translateX(-50%);
+ transform-origin: center left;
+}
+
+.spinner div:nth-of-type(4) {
+ transform: rotateX(90deg) translateY(-50%);
+ transform-origin: top center;
+}
+
+.spinner div:nth-of-type(5) {
+ transform: rotateX(-90deg) translateY(50%);
+ transform-origin: bottom center;
+}
+
+.spinner div:nth-of-type(6) {
+ transform: translateZ(22px);
+}
+
+@keyframes spinner-y0fdc1 {
+ 0% {
+  transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+ }
+
+ 50% {
+  transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+ }
+
+ 100% {
+  transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+ }
+}
+    </style>
+    <div class="spinner1">
+        <div class="spinner">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+    </div>
+    <div class="main">
+        <h1>Order IDs</h1>
+        <div class="order-form">
+            <form>
+                <input type="number" min="1" name="starting" placeholder="Enter Starting Order ID" required> <span style="font-size: 1.5rem; cursor: help;"> <abbr title="Note: Starting ID Should Be Smaller Than Ending ID. To fetch only one order please make Starting and Ending ID Same. In case of error fetching contact Developer."> < </abbr></span>
+                       <input type="number" min="2" name="ending" placeholder="Enter Ending Order ID" required>
+                <button id="thisSubmit" type="submit">Get R</button>
+            </form>
+        </div>
+    </div>
+    <div class="order-details">
+        <div class="order-res-header">
+            <h2>Order Details</h2> <button>Print</button>
+        </div>
+        <span id="order-warn">
+        </span>
+        <div id="order-results"> </div>
+
+    </div>
+
+</body>
+<script>
+const form = document.querySelector('form');
+const orderResults = document.getElementById('order-results');
+const orderWarn = document.getElementById('order-warn');
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    document.querySelector('.spinner1').style.display = 'flex';
+    orderWarn.textContent = 'Please wait...';
+    orderResults.innerHTML = '';
+    const startId = parseInt(form.elements['starting'].value);
+    const endId = parseInt(form.elements['ending'].value);
+
+    if (isNaN(startId) || isNaN(endId) || startId > endId) {
+        orderWarn.textContent = 'Invalid range!';
+        document.querySelector('.spinner1').style.display = 'none';
+        return;
+    }
+
+    for (let orderId = startId; orderId <= endId; orderId++) {
+        orderWarn.textContent = `Fetching order ${orderId}...`;
+        document.querySelector('.spinner1').style.display = 'flex';
+        try {
+            const response = await fetch("/orders/" + orderId);
+            const data = await response.json();
+            // Append each result
+            const div = document.createElement('div');
+            div.innerHTML = data.info;
+            orderResults.appendChild(div);
+            document.querySelector('.spinner1').style.display = 'none';
+        } catch (error) {
+            const errorDiv = document.createElement('div');
+            errorDiv.innerHTML = `<span style="color:red;">Error fetching order ${orderId}</span>`;
+            orderResults.appendChild(errorDiv);
+            console.error('Error fetching order:', error);
+            document.querySelector('.spinner1').style.display = 'none';
+        }
+        // Add 2 second delay before next request
+        await new Promise(resolve => setTimeout(resolve, 2000));
+    }
+    orderWarn.textContent = 'All results processed.';
+    document.querySelector('.spinner1').style.display = 'none';
+});
+   
+
+    document.querySelector('.order-res-header button').addEventListener('click', async function () {
+        const main = document.querySelector('.main');
+        const resHeaders = document.querySelector(".order-res-header");
+        const removeButtons = document.querySelectorAll('.remove-item');
+        const multipleItems = document.querySelector('.multi');
+        await main.classList.add('none');
+        await resHeaders.classList.add('none');
+        await orderWarn.classList.add('none');
+        await multipleItems.classList.add('none');
+        await removeButtons.forEach(button => {
+            button.classList.add('none');
+        });
+        window.print();
+        setTimeout(() => {
+            main.classList.remove('none');
+            resHeaders.classList.remove('none');
+            orderWarn.classList.remove('none');
+            multipleItems.classList.remove('none');
+            removeButtons.forEach(button => {
+                button.classList.remove('none');
+            });
+        }, 500)
+    });
+    function removeItemFromList(event) {
+        const item = event.target.closest('.sepreate');
+        if (item) {
+            item.remove();
+        }
+    }
+</script>
+
+</html>
