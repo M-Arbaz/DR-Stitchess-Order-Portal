@@ -597,9 +597,7 @@ order.productCount = itemCount;
 
 app.get('/',(req,res) => {
 
-    res.send(`
-
-        `);
+    res.sendFile(`${__dirname}/public/index.html`);
 })
 app.get('/orders/:id', async (req, res) => {
     console.log('Fetching order by number:', req.params.id);
