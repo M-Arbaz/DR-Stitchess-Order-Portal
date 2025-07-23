@@ -2,11 +2,13 @@ require('dotenv').config();
 const axios = require('axios');
 const express = require('express');
 const app = express();
+const http = require('http');
 const cors = require('cors');
 const SHOP = process.env.DR_STITCHESS_SHOP;
 const ACCESS_TOKEN = process.env.DR_STITCHESS_API_TOKEN;
 app.set('trust proxy', true);
-app.use(express.static('public'));
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
@@ -807,6 +809,7 @@ res.status(200).json({
 
   // .then((info) => res.status(200).json({status: 'Order details logged to console.', info:info}))
 })
-app.listen(3002, () => {
-    console.log('Server is running on port 3002');
-})
+const server = http.createServer(app);
+server.listen(3002, () => {
+  console.log('HTTP server running on http://localhost:3002');
+});
