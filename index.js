@@ -3,15 +3,26 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 const http = require('http');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const SHOP = process.env.DR_STITCHESS_SHOP;
 const ACCESS_TOKEN = process.env.DR_STITCHESS_API_TOKEN;
 app.set('trust proxy', true);
 const path = require('path');
+const corsOpts = {
+  origin: '*',
+
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+
+  allowedHeaders: ['Content-Type'],
+};
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+app.use(express.json())
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors(corsOpts));
 console.clear()
 async function getCollectionsByProductName(productName) {
   try {
