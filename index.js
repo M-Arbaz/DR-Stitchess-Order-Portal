@@ -195,7 +195,7 @@ src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Slim.jpg?v=1
 
 {
 
-name:"Classic One-Pocket Scrub Set",
+name:"Classic One-pocket Scrub Set",
 
 src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
 
@@ -380,7 +380,7 @@ src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Male.jpg?v=1
 
 {
 
-name:"Classic One-Pocket Scrub Set",
+name:"Classic One-pocket Scrub Set",
 
 src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
 
