@@ -22,6 +22,11 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOpts));
+
+// only for apache server
+app.use((req, res, next) => {
+  res.sendFile(`${__dirname}/public/index.html`);
+});
 console.clear()
 async function getCollectionsByProductName(productName) {
   try {
@@ -629,9 +634,7 @@ app.get('/',(req,res) => {
 app.get('/se',(req,res)=>{
     res.sendFile(`${__dirname}/public/index.html`);
 })
-// app.get('/*',(req,res)=>{
-//     res.sendFile(`${__dirname}/public/index.html`);
-// })
+
 app.get('/orders/:id', async (req, res) => {
     console.log('Fetching order by number:', req.params.id);
     // return;
