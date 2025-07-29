@@ -5,8 +5,8 @@ const app = express();
 const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const SHOP = process.env.DR_STITCHESS_SHOP;
-const ACCESS_TOKEN = process.env.DR_STITCHESS_API_TOKEN;
+const SHOP = process.env.SHOP
+const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 app.set('trust proxy', true);
 const path = require('path');
 const corsOpts = {
@@ -22,8 +22,10 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOpts));
+console.clear()
 async function getCollectionsByProductName(productName) {
   try {
+    // Search for the product by name in all orders (limit to latest 250 for performance)
     const response = await axios.get(`https://${SHOP}/admin/api/2024-04/orders.json`, {
       headers: {
         'X-Shopify-Access-Token': ACCESS_TOKEN,
@@ -63,6 +65,7 @@ async function getCollectionsByProductName(productName) {
           collectionTitles.push(collectionResponse.data.custom_collection.title);
         }
 
+        // Determine gender from collection titles
         if (collectionTitles.some(title => /women/i.test(title))) {
           return "Female";
         }
@@ -72,16 +75,15 @@ async function getCollectionsByProductName(productName) {
         return "Unisex";
       }
     }
-    return "Unisex"; 
+    return "Unisex"; // Not found
   } catch (err) {
     console.error('Error fetching collections:', err.response?.data || err.message);
-  
+    // return "Unisex";
   }
 }
 
 async function getShirtImageByProductName(productName, gender) {
   const ArrayWomen = [
-
 {
 
 name:"Slash Pocket Scrub Set",
@@ -340,6 +342,13 @@ src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Slim.jpg?v=1
 ]
 
 const ArrayMen = [
+     {
+
+name:"Basic V- Neckline Scrub Set",
+
+src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Basic-V-neckline.jpg?v=1753358128"
+
+},
   {
 
 name:"Two Chest Pocket Scrub Set",
@@ -419,6 +428,13 @@ src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket.jpg?v=
 
 },
 // shirts
+     {
+
+name:"Basic V- Neckline Scrub Shirt",
+
+src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Basic-V-neckline.jpg?v=1753358128"
+
+},
 {
 
 name:"Two Chest Pocket Scrub Shirt",
@@ -500,14 +516,15 @@ src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket.jpg?v=
 ]
 const src =
   gender === "Female"
-    ? (ArrayWomen.find((item) => item.name === productName)?.src)
+    ? ArrayWomen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
     : gender === "Male"
-    ? (ArrayMen.find((item) => item.name === productName)?.src)
+    ? ArrayMen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
     : undefined;
 
 return (
   src || "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/images_1.png?v=1753172052"
 );
+
 
 
 }
@@ -537,7 +554,7 @@ return (
 }
 
 async function getOrderByNumber(orderNumber) {
-
+  // console.clear();
   try {
     const response = await axios.get(`https://${SHOP}/admin/api/2024-04/orders.json`, {
       headers: {
@@ -585,7 +602,12 @@ async function getOrderByNumber(orderNumber) {
       collectionTitles.push(collectionResponse.data.custom_collection.title);
     }
 
+    // Attach to order object
     order.collection_titles = collectionTitles;
+  //  console.log(94)
+    // console.log('Order ID:', order.id);
+    // console.log('Order Number:', order.name);
+    // console.log('Customer:', order.customer?.first_name, order.customer?.last_name);
    
    const filteredItems = order.line_items.filter(item => 
   !(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group')
@@ -603,11 +625,16 @@ app.get('/',(req,res) => {
 
     res.sendFile(`${__dirname}/public/index.html`);
 })
+
 app.get('/se',(req,res)=>{
     res.sendFile(`${__dirname}/public/index.html`);
 })
+// app.get('/*',(req,res)=>{
+//     res.sendFile(`${__dirname}/public/index.html`);
+// })
 app.get('/orders/:id', async (req, res) => {
     console.log('Fetching order by number:', req.params.id);
+    // return;
     let generatedArray = [];
 getOrderByNumber(req.params.id)
 .then(async (info) =>{ 
@@ -615,7 +642,9 @@ getOrderByNumber(req.params.id)
     return res.status(404).json({ info: `Order ${req.params.id} is voided or not found.` });
   } 
 if(info.productCount > 1){
+  // console.log('Multiple items found in order:', info.line_items.length, infoArray.length);
   info.line_items.forEach((item, index) => {
+    // console.log(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group', 'true/false') && item.properties.length > 0 || item.properties[0].name !== '_gpo_parent_product_group'
     if(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group' ) {
       return;
     } else{
@@ -627,12 +656,13 @@ if(info.productCount > 1){
     
   });
 
+// console.log('Generated Array:', generatedArray.length, generatedArray)
 const htmlBlocks = await Promise.all(generatedArray.map(async item => {
   const gender = await getCollectionsByProductName(item.title);
   let pantStyle = await item.properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
     const pantStyleImage = await getPantStyleImages(pantStyle);
   const shirtStyle = await getShirtImageByProductName(item.title, gender);
-
+  // shirtStyle();
   return `
     <div class="sepreate">
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
@@ -707,12 +737,13 @@ const htmlBlocks = await Promise.all(generatedArray.map(async item => {
 
 res.status(200).json({
   info: `
-  <div class="multi">Multiple Items Found</div>
+  <div class="multi">Found ( ${info.productCount} ) Items In Order ID: ${info.order_number}</div>
   <div style="flex-wrap:wrap;" class="order-table-container">
     ${htmlBlocks.join('')}
   </div>`
 });
 generatedArray=[];
+// console.log('Generated Array:', generatedArray.length, generatedArray)
 return;
 }
 else{
@@ -802,10 +833,14 @@ res.status(200).json({
 
 
 
+// console.log('Order details:', info);
+
 })
   .catch(err => res.status(500).send('Error fetching order: ' + err.message));
 
+  // .then((info) => res.status(200).json({status: 'Order details logged to console.', info:info}))
 })
+
 app.listen(3002, () => {
   console.log('HTTP server running on http://localhost:3002');
 });
