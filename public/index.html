@@ -24,7 +24,7 @@
         h1 {
             color: #333;
         }
- 
+
         .main {
             max-width: 850px;
             margin: 20px auto;
@@ -38,7 +38,10 @@
             justify-content: center;
             gap: 10px;
         }
-
+.order-details {
+    max-width: 1300px;
+    margin: 0px auto;
+}
         .order-form {
             width: 100%;
 
@@ -100,7 +103,7 @@
         .order-table td {
             padding: 10px;
             border: 1px solid #ccc;
-            font-size: 1rem;
+            font-size: 0.8rem;
         }
 
         .order-table-container {
@@ -146,9 +149,26 @@
             font-weight: bold;
         }
 
-        .none,.spinner1 {
+        div#order-results {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+ div#order-results > div {
+           width: 48%;
+           min-height: 100vh;
+        }
+
+        div:empty {
+    display: none;
+    position: absolute;
+    width: 0px !important;
+}
+        .none,
+        .spinner1 {
             display: none;
         }
+
         .spinner1 {
             /* display: flex; */
             justify-content: center;
@@ -156,84 +176,88 @@
             position: fixed;
             width: 100vw;
             height: 100dvh;
-            background-color:#ffffff55;
+            background-color: #ffffff55;
             backdrop-filter: blur(5px);
             --webkit-backdrop-filter: blur(5px);
             z-index: 9999;
         }
+
         .spinner {
- width: 44px;
- height: 44px;
- animation: spinner-y0fdc1 2s infinite ease;
- transform-style: preserve-3d;
-}
+            width: 44px;
+            height: 44px;
+            animation: spinner-y0fdc1 2s infinite ease;
+            transform-style: preserve-3d;
+        }
 
-.spinner > div {
- background-color: rgba(0,77,255,0.2);
- height: 100%;
- position: absolute;
- width: 100%;
- border: 2px solid #004dff;
-}
+        .spinner>div {
+            background-color: rgba(0, 77, 255, 0.2);
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            border: 2px solid #004dff;
+        }
 
-.spinner div:nth-of-type(1) {
- transform: translateZ(-22px) rotateY(180deg);
-}
+        .spinner div:nth-of-type(1) {
+            transform: translateZ(-22px) rotateY(180deg);
+        }
 
-.spinner div:nth-of-type(2) {
- transform: rotateY(-270deg) translateX(50%);
- transform-origin: top right;
-}
+        .spinner div:nth-of-type(2) {
+            transform: rotateY(-270deg) translateX(50%);
+            transform-origin: top right;
+        }
 
-.spinner div:nth-of-type(3) {
- transform: rotateY(270deg) translateX(-50%);
- transform-origin: center left;
-}
+        .spinner div:nth-of-type(3) {
+            transform: rotateY(270deg) translateX(-50%);
+            transform-origin: center left;
+        }
 
-.spinner div:nth-of-type(4) {
- transform: rotateX(90deg) translateY(-50%);
- transform-origin: top center;
-}
+        .spinner div:nth-of-type(4) {
+            transform: rotateX(90deg) translateY(-50%);
+            transform-origin: top center;
+        }
 
-.spinner div:nth-of-type(5) {
- transform: rotateX(-90deg) translateY(50%);
- transform-origin: bottom center;
-}
+        .spinner div:nth-of-type(5) {
+            transform: rotateX(-90deg) translateY(50%);
+            transform-origin: bottom center;
+        }
 
-.spinner div:nth-of-type(6) {
- transform: translateZ(22px);
-}
+        .spinner div:nth-of-type(6) {
+            transform: translateZ(22px);
+        }
 
-@keyframes spinner-y0fdc1 {
- 0% {
-  transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
- }
+        @keyframes spinner-y0fdc1 {
+            0% {
+                transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+            }
 
- 50% {
-  transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
- }
+            50% {
+                transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+            }
 
- 100% {
-  transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
- }
-}
+            100% {
+                transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+            }
+        }
     </style>
     <div class="spinner1">
         <div class="spinner">
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-</div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
     <div class="main">
         <h1>Order IDs</h1>
         <div class="order-form">
             <form>
-                <input type="number" min="1" name="starting" placeholder="Enter Starting Order ID" required> <span style="font-size: 1.5rem; cursor: help;"> <abbr title="Note: Starting ID Should Be Smaller Than Ending ID. To fetch only one order please make Starting and Ending ID Same. In case of error fetching contact Developer."> < </abbr></span>
-                       <input type="number" min="2" name="ending" placeholder="Enter Ending Order ID" required>
+                <input type="number" min="1" name="starting" placeholder="Enter Starting Order ID" required> <span
+                    style="font-size: 1.5rem; cursor: help;"> <abbr
+                        title="Note: Starting ID Should Be Smaller Than Ending ID. To fetch only one order please make Starting and Ending ID Same. In case of error fetching contact Developer.">
+                        < </abbr></span>
+                <input type="number" min="2" name="ending" placeholder="Enter Ending Order ID" required>
                 <button id="thisSubmit" type="submit">Get R</button>
             </form>
         </div>
@@ -250,49 +274,49 @@
 
 </body>
 <script>
-const form = document.querySelector('form');
-const orderResults = document.getElementById('order-results');
-const orderWarn = document.getElementById('order-warn');
+    const form = document.querySelector('form');
+    const orderResults = document.getElementById('order-results');
+    const orderWarn = document.getElementById('order-warn');
 
-form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    document.querySelector('.spinner1').style.display = 'flex';
-    orderWarn.textContent = 'Please wait...';
-    orderResults.innerHTML = '';
-    const startId = parseInt(form.elements['starting'].value);
-    const endId = parseInt(form.elements['ending'].value);
-
-    if (isNaN(startId) || isNaN(endId) || startId > endId) {
-        orderWarn.textContent = 'Invalid range!';
-        document.querySelector('.spinner1').style.display = 'none';
-        return;
-    }
-
-    for (let orderId = startId; orderId <= endId; orderId++) {
-        orderWarn.textContent = `Fetching order ${orderId}...`;
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
         document.querySelector('.spinner1').style.display = 'flex';
-        try {
-            const response = await fetch("/orders/" + orderId);
-            const data = await response.json();
-            // Append each result
-            const div = document.createElement('div');
-            div.innerHTML = data.info;
-            orderResults.appendChild(div);
+        orderWarn.textContent = 'Please wait...';
+        orderResults.innerHTML = '';
+        const startId = parseInt(form.elements['starting'].value);
+        const endId = parseInt(form.elements['ending'].value);
+
+        if (isNaN(startId) || isNaN(endId) || startId > endId) {
+            orderWarn.textContent = 'Invalid range!';
             document.querySelector('.spinner1').style.display = 'none';
-        } catch (error) {
-            const errorDiv = document.createElement('div');
-            errorDiv.innerHTML = `<span style="color:red;">Error fetching order ${orderId}</span>`;
-            orderResults.appendChild(errorDiv);
-            console.error('Error fetching order:', error);
-            document.querySelector('.spinner1').style.display = 'none';
+            return;
         }
-        // Add 2 second delay before next request
-        await new Promise(resolve => setTimeout(resolve, 2000));
-    }
-    orderWarn.textContent = 'All results processed.';
-    document.querySelector('.spinner1').style.display = 'none';
-});
-   
+
+        for (let orderId = startId; orderId <= endId; orderId++) {
+            orderWarn.textContent = `Fetching order ${orderId}...`;
+            document.querySelector('.spinner1').style.display = 'flex';
+            try {
+                const response = await fetch("/orders/" + orderId);
+                const data = await response.json();
+                // Append each result
+                const div = document.createElement('div');
+                div.innerHTML = data.info;
+                orderResults.appendChild(div);
+                document.querySelector('.spinner1').style.display = 'none';
+            } catch (error) {
+                const errorDiv = document.createElement('div');
+                errorDiv.innerHTML = `<span style="color:red;">Error fetching order ${orderId}</span>`;
+                orderResults.appendChild(errorDiv);
+                console.error('Error fetching order:', error);
+                document.querySelector('.spinner1').style.display = 'none';
+            }
+            // Add 2 second delay before next request
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+        orderWarn.textContent = 'All results processed.';
+        document.querySelector('.spinner1').style.display = 'none';
+    });
+
 
     document.querySelector('.order-res-header button').addEventListener('click', async function () {
         const main = document.querySelector('.main');
@@ -302,7 +326,6 @@ form.addEventListener('submit', async (event) => {
         await main.classList.add('none');
         await resHeaders.classList.add('none');
         await orderWarn.classList.add('none');
-        // await multipleItems.classList.add('none');
         await removeButtons.forEach(button => {
             button.classList.add('none');
         });
@@ -311,7 +334,6 @@ form.addEventListener('submit', async (event) => {
             main.classList.remove('none');
             resHeaders.classList.remove('none');
             orderWarn.classList.remove('none');
-            // multipleItems.classList.remove('none');
             removeButtons.forEach(button => {
                 button.classList.remove('none');
             });

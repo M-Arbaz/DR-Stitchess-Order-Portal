@@ -5,8 +5,8 @@ const app = express();
 const http = require('http');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const SHOP = process.env.SHOP
-const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
+const SHOP = process.env.DR_STITCHESS_SHOP;
+const ACCESS_TOKEN = process.env.DR_STITCHESS_API_TOKEN;
 app.set('trust proxy', true);
 const path = require('path');
 const corsOpts = {
@@ -24,9 +24,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOpts));
 
 // only for apache server
-app.use((req, res, next) => {
-  res.sendFile(`${__dirname}/public/index.html`);
-});
+// app.use((req, res, next) => {
+//   res.sendFile(`${__dirname}/public/index.html`);
+// });
 console.clear()
 async function getCollectionsByProductName(productName) {
   try {
@@ -550,7 +550,7 @@ async function getPantStyleImages(pantStyle) {
   },
 ];
 
-const src = Array.find((item) => item.name === pantStyle)?.src;
+const src = Array.find((item) => item.name.toLowerCase() === pantStyle.toLowerCase())?.src;
 
 return (
   src || "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/images_1.png?v=1753172052"
@@ -642,7 +642,7 @@ app.get('/orders/:id', async (req, res) => {
 getOrderByNumber(req.params.id)
 .then(async (info) =>{ 
   if (info === "voided"){
-    return res.status(404).json({ info: `Order ${req.params.id} is voided or not found.` });
+    return res.status(404).json({ info: null });
   } 
 if(info.productCount > 1){
   // console.log('Multiple items found in order:', info.line_items.length, infoArray.length);
