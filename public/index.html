@@ -149,11 +149,6 @@
             font-weight: bold;
         }
 
-        div#order-results {
-            /* display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between; */
-        }
  div#order-results > div {
            width: 100%;
         }
@@ -293,45 +288,60 @@
     const orderResults = document.getElementById('order-results');
     const orderWarn = document.getElementById('order-warn');
 
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        document.querySelector('.spinner1').style.display = 'flex';
-        orderWarn.textContent = 'Please wait...';
-        orderResults.innerHTML = '';
-        const startId = parseInt(form.elements['starting'].value);
-        const endId = parseInt(form.elements['ending'].value);
+   form.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-        if (isNaN(startId) || isNaN(endId) || startId > endId) {
-            orderWarn.textContent = 'Invalid range!';
-            document.querySelector('.spinner1').style.display = 'none';
-            return;
-        }
+    document.querySelector('.spinner1').style.display = 'flex';
+    orderWarn.textContent = 'Please wait...';
+    orderResults.innerHTML = '';
 
-        for (let orderId = startId; orderId <= endId; orderId++) {
-            orderWarn.textContent = `Fetching order ${orderId}...`;
-            document.querySelector('.spinner1').style.display = 'flex';
-            try {
-                const response = await fetch("/orders/" + orderId);
-                const data = await response.json();
-                // Append each result
-                const div = document.createElement('div');
-                div.innerHTML = data.info;
-                orderResults.appendChild(div);
-                document.querySelector('.spinner1').style.display = 'none';
-            } catch (error) {
-                const errorDiv = document.createElement('div');
-                errorDiv.innerHTML = `<span style="color:red;">Error fetching order ${orderId}</span>`;
-                orderResults.appendChild(errorDiv);
-                console.error('Error fetching order:', error);
-                document.querySelector('.spinner1').style.display = 'none';
-            }
-            // Add 2 second delay before next request
-            await new Promise(resolve => setTimeout(resolve, 2000));
-        }
-        orderWarn.textContent = 'All results processed.';
+    const startId = parseInt(form.elements['starting'].value);
+    const endId = parseInt(form.elements['ending'].value);
+    const token = 'your-token-here'; // Replace with actual token
+
+    if (isNaN(startId) || isNaN(endId) || startId > endId) {
+        orderWarn.textContent = 'Invalid range!';
         document.querySelector('.spinner1').style.display = 'none';
-    });
+        return;
+    }
 
+    for (let orderId = startId; orderId <= endId; orderId++) {
+        orderWarn.textContent = `Fetching order ${orderId}...`;
+        document.querySelector('.spinner1').style.display = 'flex';
+
+        try {
+            const response = await fetch("/orders", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ orderId })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            const div = document.createElement('div');
+            div.innerHTML = data.info; // Make sure data.info is safe
+            orderResults.appendChild(div);
+        } catch (error) {
+            const errorDiv = document.createElement('div');
+            errorDiv.innerHTML = `<span style="color:red;">Error fetching order ${orderId}</span>`;
+            orderResults.appendChild(errorDiv);
+            console.error('Error fetching order:', error);
+        }
+
+        document.querySelector('.spinner1').style.display = 'none';
+        await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds between requests
+    }
+
+    orderWarn.textContent = 'All results processed.';
+    document.querySelector('.spinner1').style.display = 'none';
+});
 
     document.querySelector('.order-res-header button').addEventListener('click', async function () {
         const main = document.querySelector('.main');

@@ -89,472 +89,469 @@ async function getCollectionsByProductName(productName) {
 
 async function getShirtImageByProductName(productName, gender) {
   const ArrayWomen = [
-{
+    {
 
-name:"Slash Pocket Scrub Set",
+      name: "Slash Pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Slash-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Slash-Pocket.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Essential Scrub Set",
+      name: "Essential Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Front Placket Scrub Set",
+      name: "Front Placket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket_4f8b7716-2bf5-4ef0-8d7e-2951f7999898.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket_4f8b7716-2bf5-4ef0-8d7e-2951f7999898.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"V-Cut Neckline Scrub Set",
+      name: "V-Cut Neckline Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Neckline.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Neckline.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"V-Cut Panel Scrub Set",
+      name: "V-Cut Panel Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Panel.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Panel.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Two-Pocket Scrub Set",
+      name: "Two-Pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Two-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Two-Pocket.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Round Neckline Scrub Set",
+      name: "Round Neckline Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Round-Neckline.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Round-Neckline.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Tri-Pocket Scrub Set",
+      name: "Tri-Pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Tri-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Tri-Pocket.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Extended V-Neckline Scrub Set",
+      name: "Extended V-Neckline Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Extended-V-Neckline.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Extended-V-Neckline.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Premium Scrub Set",
+      name: "Premium Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Scrub.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Scrub.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Criss Cross Neck-Line Scrub Set",
+      name: "Criss Cross Neck-Line Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Criss-Cross.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Criss-Cross.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Femme Collar Scrub Set",
+      name: "Femme Collar Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Femme-Collar.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Femme-Collar.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Duo-Pocket Scrub Set",
+      name: "Duo-Pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Duo-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Duo-Pocket.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Kangroo-Pocket Scrub Set",
+      name: "Kangroo-Pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Kangroo-Pocket_12de7d39-0ce0-47ef-96bb-482a96a4d466.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Kangroo-Pocket_12de7d39-0ce0-47ef-96bb-482a96a4d466.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Classic Slim Scrub Set",
+      name: "Classic Slim Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Slim.jpg?v=1753163536"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Slim.jpg?v=1753163536"
 
-},
+    },
 
-{
+    {
 
-name:"Classic One-pocket Scrub Set",
+      name: "Classic One-pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
 
-},
-// shirts
-{
+    },
+    // shirts
+    {
 
-name:"Classic One-Pocket Scrub Shirt",
+      name: "Classic One-Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
 
-},
-{
+    },
+    {
 
-name:"Slash Pocket Scrub Shirt",
+      name: "Slash Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Slash-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Slash-Pocket.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Essential Scrub Shirt",
+      name: "Essential Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Front Placket Scrub Shirt",
+      name: "Front Placket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket_4f8b7716-2bf5-4ef0-8d7e-2951f7999898.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket_4f8b7716-2bf5-4ef0-8d7e-2951f7999898.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"V-Cut Neckline Scrub Shirt",
+      name: "V-Cut Neckline Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Neckline.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Neckline.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"V-Cut Panel Scrub Shirt",
+      name: "V-Cut Panel Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Panel.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Panel.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Two-Pocket Scrub Shirt",
+      name: "Two-Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Two-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Two-Pocket.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Round Neckline Scrub Shirt",
+      name: "Round Neckline Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Round-Neckline.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Round-Neckline.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Tri-Pocket Scrub Shirt",
+      name: "Tri-Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Tri-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Tri-Pocket.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Extended V-Neckline Scrub Shirt",
+      name: "Extended V-Neckline Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Extended-V-Neckline.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Extended-V-Neckline.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Premium Scrub Shirt",
+      name: "Premium Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Scrub.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Scrub.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Criss Cross Neck-Line Scrub Shirt",
+      name: "Criss Cross Neck-Line Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Criss-Cross.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Criss-Cross.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Femme Collar Scrub Shirt",
+      name: "Femme Collar Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Femme-Collar.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Femme-Collar.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Duo-Pocket Scrub Shirt",
+      name: "Duo-Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Duo-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Duo-Pocket.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Kangroo-Pocket Scrub Shirt",
+      name: "Kangroo-Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Kangroo-Pocket_12de7d39-0ce0-47ef-96bb-482a96a4d466.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Kangroo-Pocket_12de7d39-0ce0-47ef-96bb-482a96a4d466.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Classic Slim Scrub Shirt",
+      name: "Classic Slim Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Slim.jpg?v=1753163536"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Slim.jpg?v=1753163536"
 
-},
+    },
 
-]
+  ]
 
-const ArrayMen = [
-     {
+  const ArrayMen = [
+    {
 
-name:"Basic V- Neckline Scrub Set",
+      name: "Basic V- Neckline Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Basic-V-neckline.jpg?v=1753358128"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Basic-V-neckline.jpg?v=1753358128"
 
-},
-  {
+    },
+    {
 
-name:"Two Chest Pocket Scrub Set",
+      name: "Two Chest Pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Two-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Two-Pocket.jpg?v=1753163537"
 
-},
-  {
+    },
+    {
 
-name:"Essential Scrub Set",
+      name: "Essential Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537"
 
-},
+    },
 
-{
+    {
 
-name:"Classic Pen-Pocket Scrub Set",
+      name: "Classic Pen-Pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Pen-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Pen-Pocket.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Urban Collar Scrub Set",
+      name: "Urban Collar Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Urban.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Urban.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Pouch Pocket Scrub Kit",
+      name: "Pouch Pocket Scrub Kit",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Pouch-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Pouch-Pocket.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Premium Scrub Set",
+      name: "Premium Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Male.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Male.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Classic One-pocket Scrub Set",
+      name: "Classic One-pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Kangroo Pocket Scrub Set",
+      name: "Kangroo Pocket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Kangroo-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Kangroo-Pocket.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Front Loop Scrub Set",
+      name: "Front Loop Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Loop.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Loop.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Front Placket Scrub Set",
+      name: "Front Placket Scrub Set",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket.jpg?v=1753163495"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket.jpg?v=1753163495"
 
-},
-// shirts
-     {
+    },
+    // shirts
+    {
 
-name:"Basic V- Neckline Scrub Shirt",
+      name: "Basic V- Neckline Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Basic-V-neckline.jpg?v=1753358128"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Basic-V-neckline.jpg?v=1753358128"
 
-},
-{
+    },
+    {
 
-name:"Two Chest Pocket Scrub Shirt",
+      name: "Two Chest Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Two-Pocket.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Two-Pocket.jpg?v=1753163537"
 
-},
-{
+    },
+    {
 
-name:"Essential Scrub Shirt",
+      name: "Essential Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537"
 
-},
-{
+    },
+    {
 
-name:"Classic Pen-Pocket Scrub Shirt",
+      name: "Classic Pen-Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Pen-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-Pen-Pocket.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Urban Collar Scrub Shirt",
+      name: "Urban Collar Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Urban.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Urban.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Pouch Pocket Scrub Shirt",
+      name: "Pouch Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Pouch-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Pouch-Pocket.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Premium Scrub Shirt",
+      name: "Premium Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Male.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Premium-Male.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Classic One-Pocket Scrub Shirt",
+      name: "Classic One-Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Classic-One-Pocket.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Kangroo Pocket Scrub Shirt",
+      name: "Kangroo Pocket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Kangroo-Pocket.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Kangroo-Pocket.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Front Loop Scrub Shirt",
+      name: "Front Loop Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Loop.jpg?v=1753163496"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Loop.jpg?v=1753163496"
 
-},
+    },
 
-{
+    {
 
-name:"Front Placket Scrub Shirt",
+      name: "Front Placket Scrub Shirt",
 
-src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket.jpg?v=1753163495"
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Placket.jpg?v=1753163495"
 
-},
+    },
 
-]
-const src =
-  gender === "Female"
-    ? ArrayWomen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
-    : gender === "Male"
-    ? ArrayMen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
-    : undefined;
+  ]
+  const src =
+    gender === "Female"
+      ? ArrayWomen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
+      : gender === "Male"
+        ? ArrayMen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
+        : undefined;
 
-return (
-  src || "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/images_1.png?v=1753172052"
-);
-
-
-
+  return (
+    src || "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/images_1.png?v=1753172052"
+  );
 }
 
 async function getPantStyleImages(pantStyle) {
   const Array = [
     {
-    name:"Cargo Pants",
-    src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517"
-  },
-   {
-    name:"Jogger Pants",
-    src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518"
-  },
- {
-    name:"Flared Pants",
-    src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517"
-  },
-];
+      name: "Cargo Pants",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517"
+    },
+    {
+      name: "Jogger Pants",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518"
+    },
+    {
+      name: "Flared Pants",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517"
+    },
+  ];
 
-const src = Array.find((item) => item.name.toLowerCase() === pantStyle.toLowerCase())?.src;
+  const src = Array.find((item) => item.name.toLowerCase() === pantStyle.toLowerCase())?.src;
 
-return (
-  src || "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/images_1.png?v=1753172052"
-);
+  return (
+    src || "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/images_1.png?v=1753172052"
+  );
 
 }
 
@@ -579,7 +576,7 @@ async function getOrderByNumber(orderNumber) {
       return 'Order not found.';
     }
     const order = orders[0];
- if (order.cancelled_at || order.financial_status === 'voided') {
+    if (order.cancelled_at || order.financial_status === 'voided') {
       console.log('Order is voided.');
       return "voided";
     }
@@ -609,64 +606,68 @@ async function getOrderByNumber(orderNumber) {
 
     // Attach to order object
     order.collection_titles = collectionTitles;
-  //  console.log(94)
+    //  console.log(94)
     // console.log('Order ID:', order.id);
     // console.log('Order Number:', order.name);
     // console.log('Customer:', order.customer?.first_name, order.customer?.last_name);
-   
-   const filteredItems = order.line_items.filter(item => 
-  !(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group')
-);
-const itemCount = filteredItems.length;
-order.productCount = itemCount;
 
- return order;
+    const filteredItems = order.line_items.filter(item =>
+      !(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group')
+    );
+    const itemCount = filteredItems.length;
+    order.productCount = itemCount;
+
+    return order;
   } catch (err) {
     console.error('Error:', err.response?.data || err.message);
   }
 }
 
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
 
-    res.sendFile(`${__dirname}/public/index.html`);
+  res.sendFile(`${__dirname}/public/index.html`);
 })
 
-app.get('/se',(req,res)=>{
-    res.sendFile(`${__dirname}/public/index.html`);
+app.get('/se', (req, res) => {
+  res.sendFile(`${__dirname}/public/index.html`);
 })
 
-app.get('/orders/:id', async (req, res) => {
-    console.log('Fetching order by number:', req.params.id);
-    // return;
-    let generatedArray = [];
-getOrderByNumber(req.params.id)
-.then(async (info) =>{ 
-  if (info === "voided"){
-    return res.status(404).json({ info: null });
-  } 
-if(info.productCount > 1){
-  // console.log('Multiple items found in order:', info.line_items.length, infoArray.length);
-  info.line_items.forEach((item, index) => {
-    // console.log(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group', 'true/false') && item.properties.length > 0 || item.properties[0].name !== '_gpo_parent_product_group'
-    if(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group' ) {
-      return;
-    } else{
-        
-      console.log(`pushing ${index + 1}:`, "item");
+app.post('/orders', async (req, res) => {
+  const {orderId} = req.body;
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  // will check token tommorow
+  console.log('Fetching order by number:', orderId);
+ 
+  let generatedArray = [];
+  getOrderByNumber(orderId)
+    .then(async (info) => {
+      if (info === "voided") {
+        return res.status(404).json({ info: null });
+      }
+      if (info.productCount > 1) {
+        // console.log('Multiple items found in order:', info.line_items.length, infoArray.length);
+        info.line_items.forEach((item, index) => {
+          // console.log(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group', 'true/false') && item.properties.length > 0 || item.properties[0].name !== '_gpo_parent_product_group'
+          if (item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group') {
+            return;
+          } else {
 
-      generatedArray.push(item);
-    }
-    
-  });
+            console.log(`pushing ${index + 1}:`, "item");
 
-// console.log('Generated Array:', generatedArray.length, generatedArray)
-const htmlBlocks = await Promise.all(generatedArray.map(async item => {
-  const gender = await getCollectionsByProductName(item.title);
-  let pantStyle = await item.properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
-    const pantStyleImage = await getPantStyleImages(pantStyle);
-  const shirtStyle = await getShirtImageByProductName(item.title, gender);
-  // shirtStyle();
-  return `
+            generatedArray.push(item);
+          }
+
+        });
+
+        // console.log('Generated Array:', generatedArray.length, generatedArray)
+        const htmlBlocks = await Promise.all(generatedArray.map(async item => {
+          const gender = await getCollectionsByProductName(item.title);
+          let pantStyle = await item.properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
+          const pantStyleImage = await getPantStyleImages(pantStyle);
+          const shirtStyle = await getShirtImageByProductName(item.title, gender);
+          // shirtStyle();
+          return `
     <div class="sepreate">
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
       <table class="order-table">
@@ -729,32 +730,32 @@ const htmlBlocks = await Promise.all(generatedArray.map(async item => {
             <img src="${pantStyleImage}" style="display:none" alt="Pant Style Image">
 
                      ${item.title === 'Men Cargo Pants' || item.title === 'Women Cargo Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Variant Image">`
-             :item.title === 'Men Jogger Pants' || item.title === 'Women Jogger Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518" alt="Variant Image">`
-            :item.title === 'Women Flarred Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517" alt="Variant Image">`: `<img src="${pantStyleImage}" alt='Pant Style Image'>`}
+              : item.title === 'Men Jogger Pants' || item.title === 'Women Jogger Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518" alt="Variant Image">`
+                : item.title === 'Women Flarred Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517" alt="Variant Image">` : `<img src="${pantStyleImage}" alt='Pant Style Image'>`}
       </div>
     </div>
   `;
-}));
+        }));
 
-res.status(200).json({
-  info: `
+        res.status(200).json({
+          info: `
   
   <div style="flex-wrap:wrap;" class="order-table-container">
     ${htmlBlocks.join('')}
   </div>`
-});
-generatedArray=[];
-// console.log('Generated Array:', generatedArray.length, generatedArray)
-return;
-}
-else{
-  let gender = await info.collection_titles.find(title => title.includes('Men')) ? 'Male' : info.collection_titles.find(title => title.includes('Women')) ? 'Female' : 'Unisex';
-  let pantStyle = await info.line_items[0].properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
-  const shirtStyle = await getShirtImageByProductName(info.line_items[0].title, gender);
-  const pantStyleImage = await getPantStyleImages(pantStyle);
-res.status(200).json({
+        });
+        generatedArray = [];
+        // console.log('Generated Array:', generatedArray.length, generatedArray)
+        return;
+      }
+      else {
+        let gender = await info.collection_titles.find(title => title.includes('Men')) ? 'Male' : info.collection_titles.find(title => title.includes('Women')) ? 'Female' : 'Unisex';
+        let pantStyle = await info.line_items[0].properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
+        const shirtStyle = await getShirtImageByProductName(info.line_items[0].title, gender);
+        const pantStyleImage = await getPantStyleImages(pantStyle);
+        res.status(200).json({
 
-  info:`   
+          info: `   
   
     
   <div  class="order-table-container">
@@ -819,22 +820,22 @@ res.status(200).json({
             <img src="${shirtStyle}" alt="Product Image">
             <img style="display:none" src="${pantStyleImage}" alt="Pant Style Image">
             ${info.line_items[0].title === 'Men Cargo Pants' || info.line_items[0].title === 'Women Cargo Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Variant Image">`
-             :info.line_items[0].title === 'Men Jogger Pants' || info.line_items[0].title === 'Women Jogger Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518" alt="Variant Image">`
-            :info.line_items[0].title === 'Women Flarred Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517" alt="${info.line_items[0].title }">`: `<img src="${pantStyleImage}" alt='Pant Style Image'>`}
+              : info.line_items[0].title === 'Men Jogger Pants' || info.line_items[0].title === 'Women Jogger Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518" alt="Variant Image">`
+                : info.line_items[0].title === 'Women Flarred Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517" alt="${info.line_items[0].title}">` : `<img src="${pantStyleImage}" alt='Pant Style Image'>`}
        </div>
 
         </div>
         </div>`
-})
-}
-  
+        })
+      }
 
 
 
-// console.log('Order details:', info);
 
-})
-  .catch(err => res.status(500).send('Error fetching order: ' + err.message));
+      // console.log('Order details:', info);
+
+    })
+    .catch(err => res.status(500).send('Error fetching order: ' + err.message));
 
   // .then((info) => res.status(200).json({status: 'Order details logged to console.', info:info}))
 })
