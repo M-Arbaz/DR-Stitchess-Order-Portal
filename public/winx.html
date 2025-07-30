@@ -1,0 +1,841 @@
+<html lang="en"><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR Stitchess Order Details</title>
+
+<script bis_use="true" type="text/javascript" charset="utf-8" data-bis-config="[&quot;facebook.com/&quot;,&quot;twitter.com/&quot;,&quot;youtube-nocookie.com/embed/&quot;,&quot;//vk.com/&quot;,&quot;//www.vk.com/&quot;,&quot;linkedin.com/&quot;,&quot;//www.linkedin.com/&quot;,&quot;//instagram.com/&quot;,&quot;//www.instagram.com/&quot;,&quot;//www.google.com/recaptcha/api2/&quot;,&quot;//hangouts.google.com/webchat/&quot;,&quot;//www.google.com/calendar/&quot;,&quot;//www.google.com/maps/embed&quot;,&quot;spotify.com/&quot;,&quot;soundcloud.com/&quot;,&quot;//player.vimeo.com/&quot;,&quot;//disqus.com/&quot;,&quot;//tgwidget.com/&quot;,&quot;//js.driftt.com/&quot;,&quot;friends2follow.com&quot;,&quot;/widget&quot;,&quot;login&quot;,&quot;//video.bigmir.net/&quot;,&quot;blogger.com&quot;,&quot;//smartlock.google.com/&quot;,&quot;//keep.google.com/&quot;,&quot;/web.tolstoycomments.com/&quot;,&quot;moz-extension://&quot;,&quot;chrome-extension://&quot;,&quot;/auth/&quot;,&quot;//analytics.google.com/&quot;,&quot;adclarity.com&quot;,&quot;paddle.com/checkout&quot;,&quot;hcaptcha.com&quot;,&quot;recaptcha.net&quot;,&quot;2captcha.com&quot;,&quot;accounts.google.com&quot;,&quot;www.google.com/shopping/customerreviews&quot;,&quot;buy.tinypass.com&quot;,&quot;gstatic.com&quot;,&quot;secureir.ebaystatic.com&quot;,&quot;docs.google.com&quot;,&quot;contacts.google.com&quot;,&quot;github.com&quot;,&quot;mail.google.com&quot;,&quot;chat.google.com&quot;,&quot;audio.xpleer.com&quot;,&quot;keepa.com&quot;,&quot;static.xx.fbcdn.net&quot;,&quot;sas.selleramp.com&quot;,&quot;1plus1.video&quot;,&quot;console.googletagservices.com&quot;,&quot;//lnkd.demdex.net/&quot;,&quot;//radar.cedexis.com/&quot;,&quot;//li.protechts.net/&quot;,&quot;challenges.cloudflare.com/&quot;,&quot;ogs.google.com&quot;]" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/traffic.js"></script></head>
+
+<body bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJUSUtUT0siOiJkaXNhYmxlZCIsIkxJTktFRElOIjoiZGlzYWJsZWQiLCJDT05GSUciOiJkaXNhYmxlZCJ9LCJ2ZXJzaW9uIjoiMi4wLjI2Iiwic2NvcmUiOjIwMDI2fV0=" __processed_85c4d734-20aa-4013-b9b7-408bbe24efcc__="true" cz-shortcut-listen="true">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+            margin: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .main {
+            max-width: 850px;
+            margin: 20px auto;
+            /* background-color: yellow; */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+.order-details {
+    max-width: 1300px;
+    margin: 0px auto;
+}
+        .order-form {
+            width: 100%;
+
+        }
+
+        .order-form form {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            width: 100%;
+
+        }
+
+        .order-form input {
+            width: 80%;
+            padding: 10px 20px;
+            font-size: 20px;
+        }
+
+        .order-form button {
+            width: 20%;
+            background-color: #000;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 20px;
+            font-size: 20px;
+        }
+
+        .order-res-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .order-res-header button {
+            background-color: #000;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .order-table {
+            width: 50%;
+            /* max-width: 600px; */
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .order-table th,
+        .order-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            font-size: 0.8rem;
+        }
+
+        .order-table-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 50px;
+            margin: 20px auto;
+        }
+
+        .product-image {
+            /* width: 50%;
+            max-width: 600px; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-image img {
+            width: auto;
+            height:45%;
+        }
+
+        .sepreate {
+            display: flex;
+            /* justify-content: space-between; */
+            gap: 20px;
+            position: relative;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            width: 100%;
+            height: 90vh;
+        }
+
+        button.remove-item {
+            cursor: pointer;
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            color: #fff;
+            background-color: #000;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            font-weight: bold;
+        }
+
+        div#order-results {
+            /* display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; */
+        }
+ div#order-results > div {
+           width: 100%;
+        }
+
+        /* div:empty {
+    display: none;
+    position: absolute;
+    width: 0px !important;
+} */
+        .none,
+        .spinner1 {
+            display: none;
+        }
+
+        .spinner1 {
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100vw;
+            height: 100dvh;
+            background-color: #ffffff55;
+            backdrop-filter: blur(5px);
+            --webkit-backdrop-filter: blur(5px);
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 44px;
+            height: 44px;
+            animation: spinner-y0fdc1 2s infinite ease;
+            transform-style: preserve-3d;
+        }
+
+        .spinner>div {
+            background-color: rgba(0, 77, 255, 0.2);
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            border: 2px solid #004dff;
+        }
+
+        .spinner div:nth-of-type(1) {
+            transform: translateZ(-22px) rotateY(180deg);
+        }
+
+        .spinner div:nth-of-type(2) {
+            transform: rotateY(-270deg) translateX(50%);
+            transform-origin: top right;
+        }
+
+        .spinner div:nth-of-type(3) {
+            transform: rotateY(270deg) translateX(-50%);
+            transform-origin: center left;
+        }
+
+        .spinner div:nth-of-type(4) {
+            transform: rotateX(90deg) translateY(-50%);
+            transform-origin: top center;
+        }
+
+        .spinner div:nth-of-type(5) {
+            transform: rotateX(-90deg) translateY(50%);
+            transform-origin: bottom center;
+        }
+
+        .spinner div:nth-of-type(6) {
+            transform: translateZ(22px);
+        }
+
+        @keyframes spinner-y0fdc1 {
+            0% {
+                transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+            }
+
+            50% {
+                transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+            }
+
+            100% {
+                transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+            }
+        }
+
+  @media print {
+    .sepreate {
+        page-break-before: always;
+    }
+}
+
+    </style>
+    <div class="spinner1" bis_skin_checked="1" style="display: none;">
+        <div class="spinner" bis_skin_checked="1">
+            <div bis_skin_checked="1"></div>
+            <div bis_skin_checked="1"></div>
+            <div bis_skin_checked="1"></div>
+            <div bis_skin_checked="1"></div>
+            <div bis_skin_checked="1"></div>
+            <div bis_skin_checked="1"></div>
+        </div>
+    </div>
+    <div class="main" bis_skin_checked="1">
+        <h1>Order IDs</h1>
+        <div class="order-form" bis_skin_checked="1">
+            <form>
+                <input type="number" min="1" name="starting" placeholder="Enter Starting Order ID" required=""> <span style="font-size: 1.5rem; cursor: help;"> <abbr title="Note: Starting ID Should Be Smaller Than Ending ID. To fetch only one order please make Starting and Ending ID Same. In case of error fetching contact Developer.">
+                        &lt; </abbr></span>
+                <input type="number" min="2" name="ending" placeholder="Enter Ending Order ID" required="">
+                <button id="thisSubmit" type="submit">Get R</button>
+            </form>
+        </div>
+    </div>
+    <div class="order-details" bis_skin_checked="1">
+        <div class="order-res-header" bis_skin_checked="1">
+            <h2>Order Details</h2> <button>Print</button>
+        </div>
+        <span id="order-warn">All results processed.</span>
+        <div id="order-results" bis_skin_checked="1"><div bis_skin_checked="1">
+  <div class="multi" bis_skin_checked="1">Found ( 2 ) Items In Order ID: 26535</div>
+  <div style="flex-wrap:wrap;" class="order-table-container" bis_skin_checked="1">
+    
+    <div class="sepreate" bis_skin_checked="1">
+    <button onclick="removeItemFromList(event)" class="remove-item">X</button>
+      <table class="order-table">
+        <tbody>
+          <tr>
+            <th>Order ID</th>
+            <td>26535</td>
+          </tr>
+          <tr>
+            <th>Product Title</th>
+            <td>Front Loop Scrub Set</td>
+          </tr>
+          <tr>
+            <th>Gender</th>
+            <td>Male</td>
+          </tr>
+          <tr>
+            <th>Fabric</th>
+            <td>Front Loop Scrub Set - Cotton Polyster</td>
+          </tr>
+          <tr>
+            <th>Color</th>
+            <td>Ceil blue</td>
+          </tr>
+          <tr>
+            <th>Size</th>
+            <td>M</td>
+          </tr>
+          <tr>
+            <th>Embroidery</th>
+            <td>Dr M.Usman </td>
+          </tr>
+          <tr>
+            <th>Note</th>
+            <td style="font-size: 0.7rem;">No Note</td>
+          </tr>
+          <tr>
+            <th>Shirt Length</th>
+            <td>29</td>
+          </tr>
+          <tr>
+            <th>Trouser Length</th>
+            <td>38</td>
+          </tr>
+          <tr>
+            <th>Sleeve Length</th>
+            <td>9 inches</td>
+          </tr>
+          <tr>
+            <th>Trouser Style</th>
+            <td>Cargo Pants</td>
+          </tr>
+          <tr>
+            <th>Shirt Style</th>
+            <td> <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Loop.jpg?v=1753163496" style="width:50px;height:50px" alt="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Loop.jpg?v=1753163496"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="product-image" bis_skin_checked="1">
+        <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Loop.jpg?v=1753163496" alt="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Front-Loop.jpg?v=1753163496">
+
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" style="display:none" alt="Pant Style Image">
+
+                     <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Pant Style Image">
+      </div>
+    </div>
+  
+    <div class="sepreate" bis_skin_checked="1">
+    <button onclick="removeItemFromList(event)" class="remove-item">X</button>
+      <table class="order-table">
+        <tbody>
+          <tr>
+            <th>Order ID</th>
+            <td>26535</td>
+          </tr>
+          <tr>
+            <th>Product Title</th>
+            <td>Urban Collar Scrub Set</td>
+          </tr>
+          <tr>
+            <th>Gender</th>
+            <td>Male</td>
+          </tr>
+          <tr>
+            <th>Fabric</th>
+            <td>Urban Collar Scrub Set - Cotton Polyster</td>
+          </tr>
+          <tr>
+            <th>Color</th>
+            <td>Black</td>
+          </tr>
+          <tr>
+            <th>Size</th>
+            <td>M</td>
+          </tr>
+          <tr>
+            <th>Embroidery</th>
+            <td>Dr M.Usman </td>
+          </tr>
+          <tr>
+            <th>Note</th>
+            <td style="font-size: 0.7rem;">No Note</td>
+          </tr>
+          <tr>
+            <th>Shirt Length</th>
+            <td>29</td>
+          </tr>
+          <tr>
+            <th>Trouser Length</th>
+            <td>38</td>
+          </tr>
+          <tr>
+            <th>Sleeve Length</th>
+            <td>9 inches</td>
+          </tr>
+          <tr>
+            <th>Trouser Style</th>
+            <td>Cargo Pants</td>
+          </tr>
+          <tr>
+            <th>Shirt Style</th>
+            <td> <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Urban.jpg?v=1753163496" style="width:50px;height:50px" alt="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Urban.jpg?v=1753163496"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="product-image" bis_skin_checked="1">
+        <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Urban.jpg?v=1753163496" alt="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Urban.jpg?v=1753163496">
+
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" style="display:none" alt="Pant Style Image">
+
+                     <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Pant Style Image">
+      </div>
+    </div>
+  
+  </div></div><div bis_skin_checked="1">   
+  
+    
+  <div class="order-table-container" bis_skin_checked="1">
+  <div class="sepreate" bis_skin_checked="1">
+    <button onclick="removeItemFromList(event)" class="remove-item">X</button>
+        <table class="order-table">
+          <tbody>
+                <tr>
+                    <th>Order ID</th>
+                       <td>26536</td>
+                    </tr>
+                     <tr>
+                    <th>Product Title</th>
+                       <td>V-Cut Panel Scrub Set</td>
+                    </tr>
+                      <tr>
+                    <th>Gender</th>
+                    <td>Female</td>
+                    </tr>
+                     <tr>
+                    <th>Fabric</th>
+                    <td>Premium FlexCore Fabric</td>
+                    </tr>
+                    <tr>
+                    <th>Color</th>
+                    <td>Olive green</td>
+                    </tr>
+                    <tr>
+                    <th>Size</th>
+                    <td>S</td>
+                    </tr>
+                    <tr>
+                    <th>Embroidery</th>
+                    <td><span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span></td>
+                    </tr>
+                    <tr>
+                    <th>Note</th>
+                    <td style="font-size: 0.7rem;">No Note</td>
+                    </tr>
+                    <tr>
+                    <th>Shirt Length</th>
+                    <td>S</td>
+                    </tr>
+                    <tr>
+                    <th>Trouser Length</th>
+                    <td>S</td>
+                    </tr>
+                    <tr>
+                    <th>Sleeve Length</th>
+                    <td>9 inches</td>
+                    </tr>
+                    <tr>
+                    <th>Trouser Style</th>
+                    <td>Jogger Pants</td>
+                    </tr>
+                    <tr>
+                    <th>Shirt Style</th>
+                    <td>     <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Panel.jpg?v=1753163537" style="width:50px;height:50px" alt="Product Image"></td>
+                    </tr>
+     </tbody>
+          
+        </table>
+
+        <div class="product-image" bis_skin_checked="1">
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Panel.jpg?v=1753163537" alt="Product Image">
+            <img style="display:none" src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518" alt="Pant Style Image">
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518" alt="Pant Style Image">
+       </div>
+
+        </div>
+        </div></div><div bis_skin_checked="1">   
+  
+    
+  <div class="order-table-container" bis_skin_checked="1">
+  <div class="sepreate" bis_skin_checked="1">
+    <button onclick="removeItemFromList(event)" class="remove-item">X</button>
+        <table class="order-table">
+          <tbody>
+                <tr>
+                    <th>Order ID</th>
+                       <td>26537</td>
+                    </tr>
+                     <tr>
+                    <th>Product Title</th>
+                       <td>Duo-Pocket Scrub Set</td>
+                    </tr>
+                      <tr>
+                    <th>Gender</th>
+                    <td>Female</td>
+                    </tr>
+                     <tr>
+                    <th>Fabric</th>
+                    <td>Cotton Polyster</td>
+                    </tr>
+                    <tr>
+                    <th>Color</th>
+                    <td>Navy blue</td>
+                    </tr>
+                    <tr>
+                    <th>Size</th>
+                    <td>M</td>
+                    </tr>
+                    <tr>
+                    <th>Embroidery</th>
+                    <td><span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span></td>
+                    </tr>
+                    <tr>
+                    <th>Note</th>
+                    <td style="font-size: 0.7rem;">No Note</td>
+                    </tr>
+                    <tr>
+                    <th>Shirt Length</th>
+                    <td>31</td>
+                    </tr>
+                    <tr>
+                    <th>Trouser Length</th>
+                    <td>39</td>
+                    </tr>
+                    <tr>
+                    <th>Sleeve Length</th>
+                    <td>18 inches</td>
+                    </tr>
+                    <tr>
+                    <th>Trouser Style</th>
+                    <td>Cargo Pants</td>
+                    </tr>
+                    <tr>
+                    <th>Shirt Style</th>
+                    <td>     <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Duo-Pocket.jpg?v=1753163537" style="width:50px;height:50px" alt="Product Image"></td>
+                    </tr>
+     </tbody>
+          
+        </table>
+
+        <div class="product-image" bis_skin_checked="1">
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Duo-Pocket.jpg?v=1753163537" alt="Product Image">
+            <img style="display:none" src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Pant Style Image">
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Pant Style Image">
+       </div>
+
+        </div>
+        </div></div><div bis_skin_checked="1">
+  <div class="multi" bis_skin_checked="1">Found ( 2 ) Items In Order ID: 26538</div>
+  <div style="flex-wrap:wrap;" class="order-table-container" bis_skin_checked="1">
+    
+    <div class="sepreate" bis_skin_checked="1">
+    <button onclick="removeItemFromList(event)" class="remove-item">X</button>
+      <table class="order-table">
+        <tbody>
+          <tr>
+            <th>Order ID</th>
+            <td>26538</td>
+          </tr>
+          <tr>
+            <th>Product Title</th>
+            <td>V-Cut Neckline Scrub Set</td>
+          </tr>
+          <tr>
+            <th>Gender</th>
+            <td>Female</td>
+          </tr>
+          <tr>
+            <th>Fabric</th>
+            <td>V-Cut Neckline Scrub Set - Cotton Polyster</td>
+          </tr>
+          <tr>
+            <th>Color</th>
+            <td>Black</td>
+          </tr>
+          <tr>
+            <th>Size</th>
+            <td>L</td>
+          </tr>
+          <tr>
+            <th>Embroidery</th>
+            <td><span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span></td>
+          </tr>
+          <tr>
+            <th>Note</th>
+            <td style="font-size: 0.7rem;">No Note</td>
+          </tr>
+          <tr>
+            <th>Shirt Length</th>
+            <td>31</td>
+          </tr>
+          <tr>
+            <th>Trouser Length</th>
+            <td>38</td>
+          </tr>
+          <tr>
+            <th>Sleeve Length</th>
+            <td>22 inches</td>
+          </tr>
+          <tr>
+            <th>Trouser Style</th>
+            <td>Cargo Pants</td>
+          </tr>
+          <tr>
+            <th>Shirt Style</th>
+            <td> <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Neckline.jpg?v=1753163537" style="width:50px;height:50px" alt="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Neckline.jpg?v=1753163537"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="product-image" bis_skin_checked="1">
+        <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Neckline.jpg?v=1753163537" alt="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/V-Cut-Neckline.jpg?v=1753163537">
+
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" style="display:none" alt="Pant Style Image">
+
+                     <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Pant Style Image">
+      </div>
+    </div>
+  
+    <div class="sepreate" bis_skin_checked="1">
+    <button onclick="removeItemFromList(event)" class="remove-item">X</button>
+      <table class="order-table">
+        <tbody>
+          <tr>
+            <th>Order ID</th>
+            <td>26538</td>
+          </tr>
+          <tr>
+            <th>Product Title</th>
+            <td>Criss Cross Neck-Line Scrub Set</td>
+          </tr>
+          <tr>
+            <th>Gender</th>
+            <td>Female</td>
+          </tr>
+          <tr>
+            <th>Fabric</th>
+            <td>Criss Cross Neck-Line Scrub Set - Cotton Polyster</td>
+          </tr>
+          <tr>
+            <th>Color</th>
+            <td>Deep purple</td>
+          </tr>
+          <tr>
+            <th>Size</th>
+            <td>M</td>
+          </tr>
+          <tr>
+            <th>Embroidery</th>
+            <td><span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span></td>
+          </tr>
+          <tr>
+            <th>Note</th>
+            <td style="font-size: 0.7rem;">No Note</td>
+          </tr>
+          <tr>
+            <th>Shirt Length</th>
+            <td>33</td>
+          </tr>
+          <tr>
+            <th>Trouser Length</th>
+            <td>38</td>
+          </tr>
+          <tr>
+            <th>Sleeve Length</th>
+            <td>18 inches</td>
+          </tr>
+          <tr>
+            <th>Trouser Style</th>
+            <td>Cargo Pants</td>
+          </tr>
+          <tr>
+            <th>Shirt Style</th>
+            <td> <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Criss-Cross.jpg?v=1753163537" style="width:50px;height:50px" alt="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Criss-Cross.jpg?v=1753163537"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="product-image" bis_skin_checked="1">
+        <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Criss-Cross.jpg?v=1753163537" alt="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Criss-Cross.jpg?v=1753163537">
+
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" style="display:none" alt="Pant Style Image">
+
+                     <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Pant Style Image">
+      </div>
+    </div>
+  
+  </div></div><div bis_skin_checked="1">   
+  
+    
+  <div class="order-table-container" bis_skin_checked="1">
+  <div class="sepreate" bis_skin_checked="1">
+    <button onclick="removeItemFromList(event)" class="remove-item">X</button>
+        <table class="order-table">
+          <tbody>
+                <tr>
+                    <th>Order ID</th>
+                       <td>26539</td>
+                    </tr>
+                     <tr>
+                    <th>Product Title</th>
+                       <td>Essential Scrub Set</td>
+                    </tr>
+                      <tr>
+                    <th>Gender</th>
+                    <td>Male</td>
+                    </tr>
+                     <tr>
+                    <th>Fabric</th>
+                    <td>Cotton Polyster</td>
+                    </tr>
+                    <tr>
+                    <th>Color</th>
+                    <td>Zinc</td>
+                    </tr>
+                    <tr>
+                    <th>Size</th>
+                    <td>S</td>
+                    </tr>
+                    <tr>
+                    <th>Embroidery</th>
+                    <td>DR ZAKIR</td>
+                    </tr>
+                    <tr>
+                    <th>Note</th>
+                    <td style="font-size: 0.7rem;">No Note</td>
+                    </tr>
+                    <tr>
+                    <th>Shirt Length</th>
+                    <td>29 inches</td>
+                    </tr>
+                    <tr>
+                    <th>Trouser Length</th>
+                    <td>36 inches</td>
+                    </tr>
+                    <tr>
+                    <th>Sleeve Length</th>
+                    <td>9 inches</td>
+                    </tr>
+                    <tr>
+                    <th>Trouser Style</th>
+                    <td>Cargo Pants</td>
+                    </tr>
+                    <tr>
+                    <th>Shirt Style</th>
+                    <td>     <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537" style="width:50px;height:50px" alt="Product Image"></td>
+                    </tr>
+     </tbody>
+          
+        </table>
+
+        <div class="product-image" bis_skin_checked="1">
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Essential.jpg?v=1753163537" alt="Product Image">
+            <img style="display:none" src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Pant Style Image">
+            <img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Pant Style Image">
+       </div>
+
+        </div>
+        </div></div></div>
+
+    </div>
+
+
+<script>
+    const form = document.querySelector('form');
+    const orderResults = document.getElementById('order-results');
+    const orderWarn = document.getElementById('order-warn');
+    
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        document.querySelector('.spinner1').style.display = 'flex';
+        orderWarn.textContent = 'Please wait...';
+        orderResults.innerHTML = '';
+        const startId = parseInt(form.elements['starting'].value);
+        const endId = parseInt(form.elements['ending'].value);
+
+        if (isNaN(startId) || isNaN(endId) || startId > endId) {
+            orderWarn.textContent = 'Invalid range!';
+            document.querySelector('.spinner1').style.display = 'none';
+            return;
+        }
+
+        for (let orderId = startId; orderId <= endId; orderId++) {
+            orderWarn.textContent = `Fetching order ${orderId}...`;
+            document.querySelector('.spinner1').style.display = 'flex';
+            try {
+                const response = await fetch("/orders/" + orderId);
+                const data = await response.json();
+                // Append each result
+                const div = document.createElement('div');
+                div.innerHTML = data.info;
+                orderResults.appendChild(div);
+                document.querySelector('.spinner1').style.display = 'none';
+            } catch (error) {
+                const errorDiv = document.createElement('div');
+                errorDiv.innerHTML = `<span style="color:red;">Error fetching order ${orderId}</span>`;
+                orderResults.appendChild(errorDiv);
+                console.error('Error fetching order:', error);
+                document.querySelector('.spinner1').style.display = 'none';
+            }
+            // Add 2 second delay before next request
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+        orderWarn.textContent = 'All results processed.';
+        document.querySelector('.spinner1').style.display = 'none';
+    });
+
+
+    document.querySelector('.order-res-header button').addEventListener('click', async function () {
+        const seprateDivs = document.querySelectorAll('.sepreate');
+        const main = document.querySelector('.main');
+        const resHeaders = document.querySelector(".order-res-header");
+        const removeButtons = document.querySelectorAll('.remove-item');
+        const multipleItems = document.querySelector('.multi');
+        await main.classList.add('none');
+        await resHeaders.classList.add('none');
+        await orderWarn.classList.add('none');
+        await removeButtons.forEach(button => {
+            button.classList.add('none');
+        });
+        window.print();
+        setTimeout(() => {
+            main.classList.remove('none');
+            resHeaders.classList.remove('none');
+            orderWarn.classList.remove('none');
+            removeButtons.forEach(button => {
+                button.classList.remove('none');
+            });
+        }, 500)
+    });
+    function removeItemFromList(event) {
+        const item = event.target.closest('.sepreate');
+        if (item) {
+            item.remove();
+        }
+    }
+</script>
+
+<script type="text/javascript" src="chrome-extension://lhoncdfifjehhknjgacplbonnbnbjgmo/static/js/extra.bundle.js"></script></body></html>

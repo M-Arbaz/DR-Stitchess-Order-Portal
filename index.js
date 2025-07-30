@@ -671,6 +671,7 @@ const htmlBlocks = await Promise.all(generatedArray.map(async item => {
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
       <table class="order-table">
         <tbody>
+        <tr><th colspan="4"><div class="multi">Found ( ${info.productCount} ) Items In Order ID: ${info.order_number}</div></th></tr>
           <tr>
             <th>Order ID</th>
             <td>${info.order_number}</td>
@@ -719,10 +720,7 @@ const htmlBlocks = await Promise.all(generatedArray.map(async item => {
             <th>Trouser Style</th>
             <td>${item.properties.find(prop => prop.name === 'Trouser Style')?.value ? item.properties.find(prop => prop.name === 'Trouser Style')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
-          <tr>
-            <th>Shirt Style</th>
-            <td> <img src=${shirtStyle} style='width:50px;height:50px' alt=${shirtStyle}></td>
-          </tr>
+        
         </tbody>
       </table>
       <div class="product-image">
@@ -740,7 +738,7 @@ const htmlBlocks = await Promise.all(generatedArray.map(async item => {
 
 res.status(200).json({
   info: `
-  <div class="multi">Found ( ${info.productCount} ) Items In Order ID: ${info.order_number}</div>
+  
   <div style="flex-wrap:wrap;" class="order-table-container">
     ${htmlBlocks.join('')}
   </div>`
@@ -812,10 +810,7 @@ res.status(200).json({
                     <th>Trouser Style</th>
                     <td>${info.line_items[0].properties.find(prop => prop.name === 'Trouser Style')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Trouser Style')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
-                    <tr>
-                    <th>Shirt Style</th>
-                    <td>     <img src="${shirtStyle}" style='width:50px;height:50px' alt="Product Image"></td>
-                    </tr>
+                
      </tbody>
           
         </table>
