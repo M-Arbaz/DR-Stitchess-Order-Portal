@@ -6,3 +6,6 @@ node_modules/
 
 # Ignore package lock file
 package-lock.json
+
+# Ignore winx.html file
+DR-Stitchess-Order-Portal/public/winx.html
