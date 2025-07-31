@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const SHOP = process.env.DR_STITCHESS_SHOP;
 const ACCESS_TOKEN = process.env.DR_STITCHESS_API_TOKEN;
+const jwt = require('jsonwebtoken');
+const privateKey = process.env.privatetoken;
 app.set('trust proxy', true);
 const path = require('path');
 const corsOpts = {
@@ -23,10 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOpts));
 
-// only for apache server
-// app.use((req, res, next) => {
-//   res.sendFile(`${__dirname}/public/index.html`);
-// });
+
 console.clear()
 async function getCollectionsByProductName(productName) {
   try {
@@ -623,6 +622,24 @@ async function getOrderByNumber(orderNumber) {
   }
 }
 
+async function verifyToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (!token) {
+    return res.sendStatus(401);
+  }
+  try {
+    const decoded = jwt.verify(token, privateKey);
+    console.log(decoded);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    console.error('Token verification failed', err.message);
+ res.status(403).json({info:'token failed or expired please login again'});
+     return
+  }
+}
+
 app.get('/', (req, res) => {
 
   res.sendFile(`${__dirname}/public/index.html`);
@@ -631,14 +648,20 @@ app.get('/', (req, res) => {
 app.get('/se', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);
 })
+app.post('/login', (req, res) => {
 
-app.post('/orders', async (req, res) => {
+  const { username, password } = req.body;
+
+  if (username === process.env.user && password === process.env.password) {
+    const token = jwt.sign({ username }, privateKey);
+    return res.json({ token });
+  }
+  res.status(401).json({ message: 'Invalid credentials' });
+});
+
+app.post('/orders', verifyToken, async (req, res) => {
   const {orderId} = req.body;
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
-  // will check token tommorow
-  console.log('Fetching order by number:', orderId);
- 
+
   let generatedArray = [];
   getOrderByNumber(orderId)
     .then(async (info) => {
@@ -646,9 +669,7 @@ app.post('/orders', async (req, res) => {
         return res.status(404).json({ info: null });
       }
       if (info.productCount > 1) {
-        // console.log('Multiple items found in order:', info.line_items.length, infoArray.length);
         info.line_items.forEach((item, index) => {
-          // console.log(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group', 'true/false') && item.properties.length > 0 || item.properties[0].name !== '_gpo_parent_product_group'
           if (item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group') {
             return;
           } else {
@@ -660,13 +681,12 @@ app.post('/orders', async (req, res) => {
 
         });
 
-        // console.log('Generated Array:', generatedArray.length, generatedArray)
         const htmlBlocks = await Promise.all(generatedArray.map(async item => {
           const gender = await getCollectionsByProductName(item.title);
           let pantStyle = await item.properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
           const pantStyleImage = await getPantStyleImages(pantStyle);
           const shirtStyle = await getShirtImageByProductName(item.title, gender);
-          // shirtStyle();
+   
           return `
     <div class="sepreate">
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
