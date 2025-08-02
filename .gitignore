@@ -8,4 +8,4 @@ node_modules/
 package-lock.json
 
 # Ignore winx.html file
-DR-Stitchess-Order-Portal/public/winx.html
+public/winx.html

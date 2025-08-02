@@ -699,7 +699,7 @@ app.post('/orders', verifyToken, async (req, res) => {
           </tr>
           <tr>
             <th>Product Title</th>
-            <td>${item.title}</td>
+            <td>${item.title} <span style="font-size:0.9em; color:#000;">x ${item.quantity}</span></td>
           </tr>
           <tr>
             <th>Gender</th>
@@ -789,7 +789,8 @@ app.post('/orders', verifyToken, async (req, res) => {
                     </tr>
                      <tr>
                     <th>Product Title</th>
-                       <td>${info.line_items[0].title}</td>
+                       <td> ${info.line_items[0].title} <span style="font-size:0.9em; color:#000;"> x ${info.line_items[0].quantity}</span>
+</td>
                     </tr>
                       <tr>
                     <th>Gender</th>
