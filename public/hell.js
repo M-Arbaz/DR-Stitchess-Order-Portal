@@ -137,7 +137,7 @@
         document.querySelector('.spinner1').style.display = 'none';
     });
 
-    document.querySelector('.order-res-header button').addEventListener('click', async function () {
+    document.querySelector('.order-res-header button.print').addEventListener('click', async function () {
         const main = document.querySelector('.main');
         const resHeaders = document.querySelector(".order-res-header");
         const removeButtons = document.querySelectorAll('.remove-item');
@@ -158,6 +158,47 @@
             });
         }, 500)
     });
+    
+    
+    document.querySelector('.order-res-header button.printEmbroidery').addEventListener('click', async function () {
+  const embroideryTrueElements = document.querySelectorAll('.embroideryTrue');
+  if (embroideryTrueElements.length === 0) { alert('No embroidery items found.'); return; }
+
+  const printContainer = document.createElement('div');
+  printContainer.className = 'printEmbroidery';
+  printContainer.style.display = 'flex'; // make items appear in a row
+  printContainer.style.flexWrap = 'nowrap';
+  printContainer.style.gap = '10px'; // optional spacing between items
+
+  embroideryTrueElements.forEach(el => {
+    const wrapper = document.createElement('div');
+    wrapper.style.display = 'inline-block';
+    wrapper.appendChild(el.cloneNode(true));
+    printContainer.appendChild(wrapper);
+  });
+
+  const printWindow = window.open('', '', 'width=800,height=600');
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Print Embroidery</title>
+        <style>
+          body { font-family: sans-serif; padding: 20px; }
+          .printEmbroidery { display: flex; flex-direction:column; gap: 10px;}
+          .printEmbroidery > div { display: inline-block;}
+             .printEmbroidery > div:nth-child(4n)  { border-bottom:2px solid #ccc; padding-bottom:10px; }
+        </style>
+      </head>
+      <body>${printContainer.outerHTML}</body>
+    </html>
+  `);
+
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.onload = function () { printWindow.print(); printWindow.close(); };
+});
+
+    
     function removeItemFromList(event) {
         const item = event.target.closest('.sepreate');
         if (item) {
