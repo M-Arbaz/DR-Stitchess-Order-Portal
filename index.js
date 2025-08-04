@@ -691,7 +691,7 @@ app.post('/orders', verifyToken, async (req, res) => {
     <div class="sepreate">
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
       <table class="order-table">
-        <tbody>
+        <tbody class="mytablebody">
         <tr><th colspan="4"><div class="multi">Found ( ${info.productCount} ) Items In Order ID: ${info.order_number}</div></th></tr>
           <tr>
             <th>Order ID</th>
@@ -782,7 +782,7 @@ app.post('/orders', verifyToken, async (req, res) => {
   <div class="sepreate">
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
         <table class="order-table" >
-          <tbody>
+          <tbody class="mytablebody">
                 <tr>
                     <th>Order ID</th>
                        <td>${info.order_number}</td>
