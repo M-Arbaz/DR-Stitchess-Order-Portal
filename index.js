@@ -88,40 +88,40 @@ async function getCollectionsByProductName(productName) {
 
 async function getShirtImageByProductName(productName, gender) {
   const ArrayWomen = [
-       {
-          name:"Women’s Lab Coat",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
-      },{
-          name:"Essential Hoodie - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Essential Hoodie - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Scrub Cap",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
-      },      {
-          name:"Unisex Polo Shirt - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },      {
-          name:"Unisex Polo Shirt - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },{
-          name:"Badge Reel",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
-      },{
-          name:"UniSex Underscrub - Grey",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"Mask",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
-      },
+    {
+      name: "Women’s Lab Coat",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
+    }, {
+      name: "Essential Hoodie - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Essential Hoodie - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Scrub Cap",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Badge Reel",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
+    }, {
+      name: "UniSex Underscrub - Grey",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "Mask",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
+    },
     {
 
       name: "Slash Pocket Scrub Set",
@@ -380,40 +380,40 @@ async function getShirtImageByProductName(productName, gender) {
   ]
 
   const ArrayMen = [
-       {
-          name:"Lab Coat",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
-      },{
-          name:"Essential Hoodie - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Essential Hoodie - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Scrub Cap",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
-      },      {
-          name:"Unisex Polo Shirt - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },      {
-          name:"Unisex Polo Shirt - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },{
-          name:"Badge Reel",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
-      },{
-          name:"UniSex Underscrub - Grey",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"Mask",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
-      },
+    {
+      name: "Lab Coat",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
+    }, {
+      name: "Essential Hoodie - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Essential Hoodie - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Scrub Cap",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Badge Reel",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
+    }, {
+      name: "UniSex Underscrub - Grey",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "Mask",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
+    },
     {
 
       name: "Basic V- Neckline Scrub Set",
@@ -586,58 +586,58 @@ async function getShirtImageByProductName(productName, gender) {
     },
 
   ]
-  
-  
-  const unisexArray =[
-      {
-          name:"Lab Coat",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
-      },{
-          name:"Essential Hoodie - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Essential Hoodie - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Scrub Cap",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
-      },
-      {
-          name:"Unisex Polo Shirt - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },{
-          name:"Unisex Polo Shirt - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },{
-          name:"Badge Reel",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
-      },{
-          name:"UniSex Underscrub - Grey",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"Mask",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
-      },
-      
-      
-      
-      ];
+
+
+  const unisexArray = [
+    {
+      name: "Lab Coat",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
+    }, {
+      name: "Essential Hoodie - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Essential Hoodie - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Scrub Cap",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
+    },
+    {
+      name: "Unisex Polo Shirt - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Badge Reel",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
+    }, {
+      name: "UniSex Underscrub - Grey",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "Mask",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
+    },
+
+
+
+  ];
   const src =
     gender === "Female"
       ? ArrayWomen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
       : gender === "Male"
         ? ArrayMen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
-       : gender !== "Male"
-       ? unisexArray.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
-       : gender !== "Female"
-       ? unisexArray.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
-        : undefined;
+        : gender !== "Male"
+          ? unisexArray.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
+          : gender !== "Female"
+            ? unisexArray.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
+            : undefined;
 
   return (
     src || "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/images_1.png?v=1753172052"
@@ -719,14 +719,13 @@ async function getOrderByNumber(orderNumber) {
 
     // Attach to order object
     order.collection_titles = collectionTitles;
-   
+
 
     const filteredItems = order.line_items.filter(item =>
       !(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group')
     );
     const itemCount = filteredItems.length;
     order.productCount = itemCount;
-
     return order;
   } catch (err) {
     console.error('Error:', err.response?.data || err.message);
@@ -741,13 +740,13 @@ async function verifyToken(req, res, next) {
   }
   try {
     const decoded = jwt.verify(token, privateKey);
-    console.log(decoded);
+    // console.log(decoded);
     req.user = decoded;
     next();
   } catch (err) {
     console.error('Token verification failed', err.message);
- res.status(403).json({info:'token failed or expired please login again'});
-     return
+    res.status(403).json({ info: 'token failed or expired please login again' });
+    return
   }
 }
 
@@ -772,9 +771,9 @@ app.post('/login', (req, res) => {
 });
 
 app.post('/orders', verifyToken, async (req, res) => {
-  const {orderId} = req.body;
-//  res.status(200).json({info:'Please Provide Collaborator access then contact developers'})
-//  return;
+  const { orderId } = req.body;
+  //  res.status(200).json({info:'Please Provide Collaborator access then contact developers'})
+  //  return;
   let generatedArray = [];
   getOrderByNumber(orderId)
     .then(async (info) => {
@@ -784,6 +783,7 @@ app.post('/orders', verifyToken, async (req, res) => {
       if (info.productCount > 1) {
         info.line_items.forEach((item, index) => {
           if (item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group') {
+
             return;
           } else {
 
@@ -799,14 +799,14 @@ app.post('/orders', verifyToken, async (req, res) => {
           let pantStyle = await item.properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
           const pantStyleImage = await getPantStyleImages(pantStyle);
           const shirtStyle = await getShirtImageByProductName(item.title, gender);
-   
+
           return `
     <div class="sepreate">
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
       <table class="order-table">
         <tbody class="mytablebody">
         <tr><th colspan="4"><div class="multi">Found ( ${info.productCount} ) Items In Order ID: ${info.order_number}</div></th></tr>
-          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" :"noEmbroidery" }>
+          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
             <th>Order ID</th>
             <td>${info.order_number}</td>
           </tr>
@@ -818,11 +818,11 @@ app.post('/orders', verifyToken, async (req, res) => {
             <th>Gender</th>
             <td>${gender}</td>
           </tr>
-          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" :"noEmbroidery" }>
+          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
             <th>Fabric</th>
             <td>${item.name ? item.name : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
-          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" :"noEmbroidery" }>
+          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
             <th>Color</th>
             <td>${item.properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value ? item.properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
@@ -830,9 +830,17 @@ app.post('/orders', verifyToken, async (req, res) => {
             <th>Size</th>
             <td>${item.properties.find(prop => prop.name === 'Sizes')?.value ? item.properties.find(prop => prop.name === 'Sizes')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
-          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" :"noEmbroidery" }>
+          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
             <th>Embroidery</th>
             <td>${item.properties.find(prop => prop.name === 'Embroidery')?.value ? item.properties.find(prop => prop.name === 'Embroidery')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+          </tr>
+           <tr>
+            <th>Matching Scrub Cap</th>
+            <td>${item.properties.find(prop => prop.name === 'Accessory')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+          </tr>
+           <tr>
+            <th>Yoyo Chain Tag</th>
+            <td>${item.properties.find(prop => prop.name === 'Yoyo Chain Tag')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
           <tr>
             <th>Note</th>
@@ -896,7 +904,7 @@ app.post('/orders', verifyToken, async (req, res) => {
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
         <table class="order-table" >
           <tbody class="mytablebody">
-                <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ?  "embroideryTrue" :"noEmbroidery" }>
+                <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
                     <th>Order ID</th>
                        <td>${info.order_number}</td>
                     </tr>
@@ -908,11 +916,11 @@ app.post('/orders', verifyToken, async (req, res) => {
                     <th>Gender</th>
                     <td>${gender}</td>
                     </tr>
-                     <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ?  "embroideryTrue" :"noEmbroidery" }>
+                     <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
                     <th>Fabric</th>
                     <td>${info.line_items[0].variant_title ? info.line_items[0].variant_title : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
-                    <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ?  "embroideryTrue" :"noEmbroidery" }>
+                    <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
                     <th>Color</th>
                     <td>${info.line_items[0].properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
@@ -920,10 +928,18 @@ app.post('/orders', verifyToken, async (req, res) => {
                     <th>Size</th>
                     <td>${info.line_items[0].properties.find(prop => prop.name === 'Sizes')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Sizes')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
-                    <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ?  "embroideryTrue" :"noEmbroidery" }>
+                    <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
                     <th>Embroidery</th>
                     <td>${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
+                      <tr>
+            <th>Matching Scrub Cap</th>
+            <td>${info.line_items[0].properties.find(prop => prop.name === 'Accessory')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+          </tr>
+                   <tr>
+            <th>Yoyo Chain Tag</th>
+            <td>${info.line_items[0].properties.find(prop => prop.name === 'Yoyo Chain Tag')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+          </tr>
                     <tr>
                     <th>Note</th>
                     <td style="font-size: 0.7rem;">${info.note ? info.note : 'No Note'}</td>
