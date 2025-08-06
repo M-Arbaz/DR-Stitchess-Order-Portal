@@ -18,7 +18,7 @@ This tool streamlines daily operations by allowing quick access to order data, r
 ### Installation
 
 ```bash
-git clone (https://github.com/M-Arbaz/DR-Stitchess-Order-Portal)
+git clone https://github.com/M-Arbaz/DR-Stitchess-Order-Portal
 cd DR-Stitchess-Order-Portal
 npm install
 ```
