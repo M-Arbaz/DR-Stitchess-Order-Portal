@@ -29,7 +29,6 @@ app.use(cors(corsOpts));
 console.clear()
 async function getCollectionsByProductName(productName) {
   try {
-    // Search for the product by name in all orders (limit to latest 250 for performance)
     const response = await axios.get(`https://${SHOP}/admin/api/2024-04/orders.json`, {
       headers: {
         'X-Shopify-Access-Token': ACCESS_TOKEN,
@@ -41,11 +40,9 @@ async function getCollectionsByProductName(productName) {
       }
     });
 
-    // Find the product in any order
     for (const order of response.data.orders) {
       const product = order.line_items.find(item => item.title === productName);
       if (product) {
-        // Get collections for this product
         const collectsResponse = await axios.get(`https://${SHOP}/admin/api/2024-04/collects.json`, {
           headers: {
             'X-Shopify-Access-Token': ACCESS_TOKEN,
@@ -57,7 +54,6 @@ async function getCollectionsByProductName(productName) {
         });
         const collects = collectsResponse.data.collects;
 
-        // Get collection titles
         let collectionTitles = [];
         for (const collect of collects) {
           const collectionResponse = await axios.get(`https://${SHOP}/admin/api/2024-04/custom_collections/${collect.collection_id}.json`, {
@@ -69,7 +65,6 @@ async function getCollectionsByProductName(productName) {
           collectionTitles.push(collectionResponse.data.custom_collection.title);
         }
 
-        // Determine gender from collection titles
         if (collectionTitles.some(title => /women/i.test(title))) {
           return "Female";
         }
@@ -79,10 +74,10 @@ async function getCollectionsByProductName(productName) {
         return "Unisex";
       }
     }
-    return "Unisex"; // Not found
+    return "Unisex"; 
   } catch (err) {
     console.error('Error fetching collections:', err.response?.data || err.message);
-    // return "Unisex";
+  
   }
 }
 
@@ -669,7 +664,7 @@ async function getPantStyleImages(pantStyle) {
 }
 
 async function getOrderByNumber(orderNumber) {
-  // console.clear();
+  
   try {
     const response = await axios.get(`https://${SHOP}/admin/api/2024-04/orders.json`, {
       headers: {
@@ -693,7 +688,6 @@ async function getOrderByNumber(orderNumber) {
       console.log('Order is voided.');
       return "voided";
     }
-    // Get product collections
     const productId = order.line_items[0].product_id;
     const collectsResponse = await axios.get(`https://${SHOP}/admin/api/2024-04/collects.json`, {
       headers: {
@@ -717,7 +711,6 @@ async function getOrderByNumber(orderNumber) {
       collectionTitles.push(collectionResponse.data.custom_collection.title);
     }
 
-    // Attach to order object
     order.collection_titles = collectionTitles;
 
 
@@ -740,7 +733,7 @@ async function verifyToken(req, res, next) {
   }
   try {
     const decoded = jwt.verify(token, privateKey);
-    // console.log(decoded);
+
     req.user = decoded;
     next();
   } catch (err) {
@@ -772,8 +765,7 @@ app.post('/login', (req, res) => {
 
 app.post('/orders', verifyToken, async (req, res) => {
   const { orderId } = req.body;
-  //  res.status(200).json({info:'Please Provide Collaborator access then contact developers'})
-  //  return;
+
   let generatedArray = [];
   getOrderByNumber(orderId)
     .then(async (info) => {
@@ -886,7 +878,6 @@ app.post('/orders', verifyToken, async (req, res) => {
   </div>`
         });
         generatedArray = [];
-        // console.log('Generated Array:', generatedArray.length, generatedArray)
         return;
       }
       else {
@@ -980,13 +971,8 @@ app.post('/orders', verifyToken, async (req, res) => {
 
 
 
-
-      // console.log('Order details:', info);
-
     })
     .catch(err => res.status(500).send('Error fetching order: ' + err.message));
-
-  // .then((info) => res.status(200).json({status: 'Order details logged to console.', info:info}))
 })
 
 app.listen(3002, () => {
