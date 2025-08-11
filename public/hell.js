@@ -1,8 +1,6 @@
-    // Helper to set a cookie
     function setCookie(name, value, seconds) {
         document.cookie = `${name}=${value}; max-age=${seconds}; path=/`;
     }
-    // Helper to get a cookie
     function getCookie(name) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -166,9 +164,9 @@
 
   const printContainer = document.createElement('div');
   printContainer.className = 'printEmbroidery';
-  printContainer.style.display = 'flex'; // make items appear in a row
+  printContainer.style.display = 'flex'; 
   printContainer.style.flexWrap = 'nowrap';
-  printContainer.style.gap = '10px'; // optional spacing between items
+  printContainer.style.gap = '10px'; 
 
   embroideryTrueElements.forEach(el => {
     const wrapper = document.createElement('div');
