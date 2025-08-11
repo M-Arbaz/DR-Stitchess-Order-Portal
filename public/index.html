@@ -5,13 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DR Stitchess Order Details</title>
-      <meta name="description" content="Internal portal for managing and printing order and embroidery details for Dr. Stitchess." />
- <meta name="robots" content="noindex, nofollow" />
-  <meta name="author" content="M_Arbaz" />
- <meta property="og:title" content="Dr. Stitchess Order Portal by M-Arbaz" />
- <meta property="og:description" content="A custom-built internal tool for Dr. Stitchess to manage and print order & embroidery details. Developed by @M-Arbaz." />
-  <meta property="og:image" content="/preview.png" />
-  <meta property="og:type" content="website" />
+    <meta name="description"
+        content="Internal portal for managing and printing order and embroidery details for Dr. Stitchess." />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="author" content="M_Arbaz" />
+    <meta property="og:title" content="Dr. Stitchess Order Portal by M-Arbaz" />
+    <meta property="og:description"
+        content="A custom-built internal tool for Dr. Stitchess to manage and print order & embroidery details. Developed by @M-Arbaz." />
+    <meta property="og:image" content="/preview.png" />
+    <meta property="og:type" content="website" />
 
 </head>
 
@@ -35,7 +37,6 @@
         .main {
             max-width: 850px;
             margin: 20px auto;
-            /* background-color: yellow; */
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 25px;
@@ -102,9 +103,7 @@
 
         .order-table {
             width: 50%;
-            /* max-width: 600px; */
             border-collapse: collapse;
-            /*border: 1px solid #ccc;*/
             text-align: left;
         }
 
@@ -115,19 +114,16 @@
             font-size: 25px;
         }
 
-        .order-table th{
-              font-size: 20px !important;
+        .order-table th {
+            font-size: 20px !important;
         }
+
         .order-table-container {
             display: flex;
             justify-content: flex-start;
-            /* gap: 50px;
-            margin: 20px auto; */
         }
 
         .product-image {
-            /* width: 50%;
-            max-width: 600px; */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -146,7 +142,7 @@
             border-collapse: collapse;
             width: 100%;
             height: 95vh;
-            overflow:hidden auto;
+            overflow: hidden auto;
         }
 
         button.remove-item {
@@ -166,18 +162,13 @@
             width: 100%;
         }
 
-        /* div:empty {
-    display: none;
-    position: absolute;
-    width: 0px !important;
-} */
+
         .none,
         .spinner1 {
             display: none;
         }
 
         .spinner1 {
-            /* display: flex; */
             justify-content: center;
             align-items: center;
             position: fixed;
@@ -261,8 +252,6 @@
             }
         }
 
-
-        /* login form CSS */
         .login-main {
             width: 100%;
             height: 100%;
@@ -331,8 +320,9 @@
             color: green;
             text-decoration: underline;
         }
-        .mytablebody{
-            display:block;
+
+        .mytablebody {
+            display: block;
         }
     </style>
     <div class="spinner1">
@@ -360,7 +350,8 @@
     </div>
     <div class="order-details">
         <div class="order-res-header">
-            <h2>Order Details</h2> <button class="printEmbroidery">Print Embroidery</button> <button class="print">Print</button>
+            <h2>Order Details</h2> <button class="printEmbroidery">Print Embroidery</button> <button
+                class="print">Print</button>
         </div>
         <span id="order-warn">
         </span>
@@ -386,19 +377,34 @@
 
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.27/bundled/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            duration: 1.2,
+            smooth: true
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+    </script>
+    <script>
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = getCookie('authToken');
+            const loginMain = document.querySelector('.login-main');
+            if (token) {
+                loginMain.style.display = 'none';
+            }
+        });
+
+    </script>
+
+    <script src="/hell.js"></script>
 </body>
 
-<script>
-  
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const token = getCookie('authToken');
-        const loginMain = document.querySelector('.login-main');
-        if (token) {
-            loginMain.style.display = 'none';
-        }
-    });
-  
-</script>
-<script src="/hell.js"></script>
 </html>
