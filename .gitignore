@@ -9,3 +9,6 @@ package-lock.json
 
 # Ignore winx.html file
 public/winx.html
+
+# Ignore Deployed Build
+build.js
