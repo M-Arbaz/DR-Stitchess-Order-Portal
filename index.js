@@ -3,6 +3,7 @@ const axios = require('axios');
 const express = require('express');
 const app = express();
 const http = require('http');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const SHOP = process.env.DR_STITCHESS_SHOP;
@@ -26,9 +27,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOpts));
 
 
-console.clear()
+console.clear();
+function logOrderResponse(data) {
+  const logEntry = `[${new Date().toISOString()}] ${JSON.stringify(data)}\n`;
+  fs.appendFile('server-responces.json', logEntry, err => {
+    if (err) console.error('Failed to log response:', err);
+  });
+}
 async function getCollectionsByProductName(productName) {
   try {
+    // Search for the product by name in all orders (limit to latest 250 for performance)
     const response = await axios.get(`https://${SHOP}/admin/api/2024-04/orders.json`, {
       headers: {
         'X-Shopify-Access-Token': ACCESS_TOKEN,
@@ -40,9 +48,11 @@ async function getCollectionsByProductName(productName) {
       }
     });
 
+    // Find the product in any order
     for (const order of response.data.orders) {
       const product = order.line_items.find(item => item.title === productName);
       if (product) {
+        // Get collections for this product
         const collectsResponse = await axios.get(`https://${SHOP}/admin/api/2024-04/collects.json`, {
           headers: {
             'X-Shopify-Access-Token': ACCESS_TOKEN,
@@ -54,6 +64,7 @@ async function getCollectionsByProductName(productName) {
         });
         const collects = collectsResponse.data.collects;
 
+        // Get collection titles
         let collectionTitles = [];
         for (const collect of collects) {
           const collectionResponse = await axios.get(`https://${SHOP}/admin/api/2024-04/custom_collections/${collect.collection_id}.json`, {
@@ -65,6 +76,7 @@ async function getCollectionsByProductName(productName) {
           collectionTitles.push(collectionResponse.data.custom_collection.title);
         }
 
+        // Determine gender from collection titles
         if (collectionTitles.some(title => /women/i.test(title))) {
           return "Female";
         }
@@ -74,49 +86,49 @@ async function getCollectionsByProductName(productName) {
         return "Unisex";
       }
     }
-    return "Unisex"; 
+    return "Unisex"; // Not found
   } catch (err) {
     console.error('Error fetching collections:', err.response?.data || err.message);
-  
+    // return "Unisex";
   }
 }
 
 async function getShirtImageByProductName(productName, gender) {
   const ArrayWomen = [
-    {
-      name: "Women’s Lab Coat",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
-    }, {
-      name: "Essential Hoodie - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-    }, {
-      name: "Essential Hoodie - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-    }, {
-      name: "Scrub Cap",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
-    }, {
-      name: "Unisex Polo Shirt - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-    }, {
-      name: "Unisex Polo Shirt - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-    }, {
-      name: "Badge Reel",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
-    }, {
-      name: "UniSex Underscrub - Grey",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "UniSex Underscrub - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "UniSex Underscrub - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "Mask",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
-    },
+       {
+          name:"Women’s Lab Coat",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
+      },{
+          name:"Essential Hoodie - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+      },{
+          name:"Essential Hoodie - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+      },{
+          name:"Scrub Cap",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
+      },      {
+          name:"Unisex Polo Shirt - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+      },      {
+          name:"Unisex Polo Shirt - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+      },{
+          name:"Badge Reel",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
+      },{
+          name:"UniSex Underscrub - Grey",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"UniSex Underscrub - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"UniSex Underscrub - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"Mask",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
+      },
     {
 
       name: "Slash Pocket Scrub Set",
@@ -375,40 +387,40 @@ async function getShirtImageByProductName(productName, gender) {
   ]
 
   const ArrayMen = [
-    {
-      name: "Lab Coat",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
-    }, {
-      name: "Essential Hoodie - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-    }, {
-      name: "Essential Hoodie - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-    }, {
-      name: "Scrub Cap",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
-    }, {
-      name: "Unisex Polo Shirt - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-    }, {
-      name: "Unisex Polo Shirt - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-    }, {
-      name: "Badge Reel",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
-    }, {
-      name: "UniSex Underscrub - Grey",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "UniSex Underscrub - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "UniSex Underscrub - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "Mask",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
-    },
+       {
+          name:"Lab Coat",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
+      },{
+          name:"Essential Hoodie - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+      },{
+          name:"Essential Hoodie - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+      },{
+          name:"Scrub Cap",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
+      },      {
+          name:"Unisex Polo Shirt - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+      },      {
+          name:"Unisex Polo Shirt - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+      },{
+          name:"Badge Reel",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
+      },{
+          name:"UniSex Underscrub - Grey",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"UniSex Underscrub - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"UniSex Underscrub - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"Mask",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
+      },
     {
 
       name: "Basic V- Neckline Scrub Set",
@@ -581,58 +593,58 @@ async function getShirtImageByProductName(productName, gender) {
     },
 
   ]
-
-
-  const unisexArray = [
-    {
-      name: "Lab Coat",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
-    }, {
-      name: "Essential Hoodie - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-    }, {
-      name: "Essential Hoodie - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-    }, {
-      name: "Scrub Cap",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
-    },
-    {
-      name: "Unisex Polo Shirt - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-    }, {
-      name: "Unisex Polo Shirt - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-    }, {
-      name: "Badge Reel",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
-    }, {
-      name: "UniSex Underscrub - Grey",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "UniSex Underscrub - Navy",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "UniSex Underscrub - Black",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-    }, {
-      name: "Mask",
-      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
-    },
-
-
-
-  ];
+  
+  
+  const unisexArray =[
+      {
+          name:"Lab Coat",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
+      },{
+          name:"Essential Hoodie - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+      },{
+          name:"Essential Hoodie - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+      },{
+          name:"Scrub Cap",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
+      },
+      {
+          name:"Unisex Polo Shirt - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+      },{
+          name:"Unisex Polo Shirt - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+      },{
+          name:"Badge Reel",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
+      },{
+          name:"UniSex Underscrub - Grey",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"UniSex Underscrub - Navy",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"UniSex Underscrub - Black",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+      },{
+          name:"Mask",
+          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
+      },
+      
+      
+      
+      ];
   const src =
     gender === "Female"
       ? ArrayWomen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
       : gender === "Male"
         ? ArrayMen.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
-        : gender !== "Male"
-          ? unisexArray.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
-          : gender !== "Female"
-            ? unisexArray.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
-            : undefined;
+       : gender !== "Male"
+       ? unisexArray.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
+       : gender !== "Female"
+       ? unisexArray.find((item) => item.name.toLowerCase() === productName.toLowerCase())?.src
+        : undefined;
 
   return (
     src || "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/images_1.png?v=1753172052"
@@ -664,7 +676,7 @@ async function getPantStyleImages(pantStyle) {
 }
 
 async function getOrderByNumber(orderNumber) {
-  
+  // console.clear();
   try {
     const response = await axios.get(`https://${SHOP}/admin/api/2024-04/orders.json`, {
       headers: {
@@ -680,12 +692,11 @@ async function getOrderByNumber(orderNumber) {
 
     const orders = response.data.orders;
     if (orders.length === 0) {
-      console.log('Order not found.');
       return 'Order not found.';
     }
     const order = orders[0];
     if (order.cancelled_at || order.financial_status === 'voided') {
-      console.log('Order is voided.');
+    
       return "voided";
     }
     const productId = order.line_items[0].product_id;
@@ -710,15 +721,15 @@ async function getOrderByNumber(orderNumber) {
       });
       collectionTitles.push(collectionResponse.data.custom_collection.title);
     }
-
     order.collection_titles = collectionTitles;
-
+   
 
     const filteredItems = order.line_items.filter(item =>
       !(item.properties && item.properties[0] && item.properties[0].name === '_gpo_parent_product_group')
     );
     const itemCount = filteredItems.length;
     order.productCount = itemCount;
+
     return order;
   } catch (err) {
     console.error('Error:', err.response?.data || err.message);
@@ -733,15 +744,17 @@ async function verifyToken(req, res, next) {
   }
   try {
     const decoded = jwt.verify(token, privateKey);
-
+ 
     req.user = decoded;
     next();
   } catch (err) {
     console.error('Token verification failed', err.message);
-    res.status(403).json({ info: 'token failed or expired please login again' });
-    return
+ res.status(403).json({info:'token failed or expired please login again'});
+     return
   }
 }
+
+
 
 
 app.get('/', (req, res) => {
@@ -750,6 +763,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/se', (req, res) => {
+
   res.sendFile(`${__dirname}/public/index.html`);
 })
 app.post('/login', (req, res) => {
@@ -765,7 +779,7 @@ app.post('/login', (req, res) => {
 
 app.post('/orders', verifyToken, async (req, res) => {
   const { orderId } = req.body;
-
+ 
   let generatedArray = [];
   getOrderByNumber(orderId)
     .then(async (info) => {
@@ -779,7 +793,6 @@ app.post('/orders', verifyToken, async (req, res) => {
             return;
           } else {
 
-            console.log(`pushing ${index + 1}:`, "item");
 
             generatedArray.push(item);
           }
@@ -788,7 +801,21 @@ app.post('/orders', verifyToken, async (req, res) => {
 
         const htmlBlocks = await Promise.all(generatedArray.map(async item => {
           const gender = await getCollectionsByProductName(item.title);
-          let pantStyle = await item.properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
+          let pantStyle = await item.properties.find(prop => prop.name === 'Trouser Style' || prop.name === "trouser-style")?.value || 'N/A';
+         
+          let shirtLength = await item.properties.find(prop => prop.name === 'Shirt Length' || prop.name === "shirt-length")?.value === 'Custom' 
+         ? "Custom " + "- " + await item.properties.find(prop => prop.name === 'custom-shirt-length')?.value
+         : await item.properties.find(prop => prop.name === 'Shirt Length' || prop.name === "shirt-length")?.value || "N/A";
+
+          let trouserLength = await item.properties.find(prop => prop.name === 'Trouser Length' || prop.name === 'Trouser length' || prop.name === 'trouser-length')?.value === 'Custom' 
+             ? "Custom " + "- " + await  item.properties.find(prop => prop.name === 'custom-trouser-length')?.value 
+             : await item.properties.find(prop => prop.name === 'Trouser Length' || prop.name === 'Trouser length' || prop.name === 'trouser-length')?.value || "N/A" ;
+
+          let sleeveLength = item.properties.find(prop => prop.name === 'Sleeve length' || prop.name === 'Sleeve Length' || prop.name === 'sleeve-length')?.value === "Custom"
+             ?   "Custom " + "- " + await item.properties.find(prop => prop.name === 'custom-sleeve-length')?.value 
+             : await item.properties.find(prop => prop.name === 'Sleeve length' || prop.name === 'Sleeve Length' || prop.name === 'sleeve-length')?.value || "N/A";
+
+
           const pantStyleImage = await getPantStyleImages(pantStyle);
           const shirtStyle = await getShirtImageByProductName(item.title, gender);
 
@@ -798,7 +825,7 @@ app.post('/orders', verifyToken, async (req, res) => {
       <table class="order-table">
         <tbody class="mytablebody">
         <tr><th colspan="4"><div class="multi">Found ( ${info.productCount} ) Items In Order ID: ${info.order_number}</div></th></tr>
-          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
+          <tr class=${item.properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? "embroideryTrue" : "noEmbroidery"}>
             <th>Order ID</th>
             <td>${info.order_number}</td>
           </tr>
@@ -810,29 +837,33 @@ app.post('/orders', verifyToken, async (req, res) => {
             <th>Gender</th>
             <td>${gender}</td>
           </tr>
-          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
+          <tr class=${item.properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? "embroideryTrue" : "noEmbroidery"}>
             <th>Fabric</th>
             <td>${item.name ? item.name : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
-          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
+          <tr class=${item.properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? "embroideryTrue" : "noEmbroidery"}>
             <th>Color</th>
-            <td>${item.properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value ? item.properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td class="color">${item.properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value ? item.properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
           <tr>
             <th>Size</th>
-            <td>${item.properties.find(prop => prop.name === 'Sizes')?.value ? item.properties.find(prop => prop.name === 'Sizes')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${item.properties.find(prop => prop.name === 'Sizes' || prop.name === 'sizes')?.value ? item.properties.find(prop => prop.name === 'Sizes' || prop.name === 'sizes')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
-          <tr class=${item.properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
+          <tr class=${item.properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? "embroideryTrue" : "noEmbroidery"}>
             <th>Embroidery</th>
-            <td>${item.properties.find(prop => prop.name === 'Embroidery')?.value ? item.properties.find(prop => prop.name === 'Embroidery')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${item.properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? item.properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
            <tr>
             <th>Matching Scrub Cap</th>
-            <td>${item.properties.find(prop => prop.name === 'Accessory')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${item.properties.find(prop => prop.name === 'Accessory' || prop.name === 'matching-scrub-cap')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
            <tr>
             <th>Yoyo Chain Tag</th>
-            <td>${item.properties.find(prop => prop.name === 'Yoyo Chain Tag')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${item.properties.find(prop => prop.name === 'Yoyo Chain Tag' || prop.name === 'yoyo-chain')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+          </tr>
+           <tr>
+            <th>Matching Scrub Mask</th>
+            <td>${item.properties.find(prop => prop.name === 'Matching Scrub Mask' || prop.name === 'matching-scrub-mask')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
           <tr>
             <th>Note</th>
@@ -840,19 +871,19 @@ app.post('/orders', verifyToken, async (req, res) => {
           </tr>
           <tr>
             <th>Shirt Length</th>
-            <td>${item.properties.find(prop => prop.name === 'Shirt length' || prop.name === 'Shirt Length')?.value ? item.properties.find(prop => prop.name === 'Shirt length' || prop.name === 'Shirt Length')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${shirtLength}</td>
           </tr>
           <tr>
             <th>Trouser Length</th>
-            <td>${item.properties.find(prop => prop.name === 'Trouser Length' || prop.name === 'Trouser length')?.value ? item.properties.find(prop => prop.name === 'Trouser Length' || prop.name === 'Trouser length')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${trouserLength}</td>
           </tr>
           <tr>
             <th>Sleeve Length</th>
-            <td>${item.properties.find(prop => prop.name === 'Sleeve length' || prop.name === 'Sleeve Length')?.value ? item.properties.find(prop => prop.name === 'Sleeve length' || prop.name === 'Sleeve Length')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${sleeveLength}</td>
           </tr>
           <tr>
             <th>Trouser Style</th>
-            <td>${item.properties.find(prop => prop.name === 'Trouser Style')?.value ? item.properties.find(prop => prop.name === 'Trouser Style')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${item.properties.find(prop => prop.name === 'Trouser Style' || prop.name === 'trouser-style' || prop.name === 'custom-trouser-style')?.value ? item.properties.find(prop => prop.name === 'Trouser Style' || prop.name === 'trouser-style' || prop.name === 'custom-trouser-style')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
         
         </tbody>
@@ -864,7 +895,7 @@ app.post('/orders', verifyToken, async (req, res) => {
 
                      ${item.title === 'Men Cargo Pants' || item.title === 'Women Cargo Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Variant Image">`
               : item.title === 'Men Jogger Pants' || item.title === 'Women Jogger Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518" alt="Variant Image">`
-                : item.title === 'Women Flarred Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517" alt="Variant Image">` : `<img src="${pantStyleImage}" alt='Pant Style Image'>`}
+                : item.title === 'Women Flarred Pants'  ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517" alt="Variant Image">` : `<img src="${pantStyleImage}" alt='Pant Style Image'>`}
       </div>
     </div>
   `;
@@ -877,12 +908,30 @@ app.post('/orders', verifyToken, async (req, res) => {
     ${htmlBlocks.join('')}
   </div>`
         });
+        logOrderResponse({
+          orderId,
+          info: htmlBlocks,
+          time: new Date().toISOString()
+        });
         generatedArray = [];
         return;
       }
       else {
         let gender = await info.collection_titles.find(title => title.includes('Men')) ? 'Male' : info.collection_titles.find(title => title.includes('Women')) ? 'Female' : 'Unisex';
-        let pantStyle = await info.line_items[0].properties.find(prop => prop.name === 'Trouser Style')?.value || 'N/A';
+        let pantStyle = await info.line_items[0].properties.find(prop => prop.name === 'Trouser Style' || prop.name === "trouser-style")?.value || 'N/A';
+
+             let shirtLength = await info.line_items[0].properties.find(prop => prop.name === 'Shirt Length' || prop.name === "shirt-length")?.value === 'Custom' 
+         ? "Custom " + "- " + await info.line_items[0].properties.find(prop => prop.name === 'custom-shirt-length')?.value
+         : await info.line_items[0].properties.find(prop => prop.name === 'Shirt Length' || prop.name === "shirt-length")?.value || "N/A";
+
+          let trouserLength = await info.line_items[0].properties.find(prop => prop.name === 'Trouser Length' || prop.name === 'Trouser length' || prop.name === 'trouser-length')?.value === 'Custom' 
+             ? "Custom " + "- " + await info.line_items[0].properties.find(prop => prop.name === 'custom-trouser-length')?.value 
+             : await info.line_items[0].properties.find(prop => prop.name === 'Trouser Length' || prop.name === 'Trouser length' || prop.name === 'trouser-length')?.value || "N/A" ;
+
+          let sleeveLength = info.line_items[0].properties.find(prop => prop.name === 'Sleeve length' || prop.name === 'Sleeve Length' || prop.name === 'sleeve-length')?.value === "Custom"
+             ? "Custom " + "- " + await info.line_items[0].properties.find(prop => prop.name === 'custom-sleeve-length')?.value 
+             : await info.line_items[0].properties.find(prop => prop.name === 'Sleeve length' || prop.name === 'Sleeve Length' || prop.name === 'sleeve-length')?.value || "N/A";
+
         const shirtStyle = await getShirtImageByProductName(info.line_items[0].title, gender);
         const pantStyleImage = await getPantStyleImages(pantStyle);
         res.status(200).json({
@@ -895,7 +944,7 @@ app.post('/orders', verifyToken, async (req, res) => {
     <button onclick="removeItemFromList(event)" class="remove-item">X</button>
         <table class="order-table" >
           <tbody class="mytablebody">
-                <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
+                <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? "embroideryTrue" : "noEmbroidery"}>
                     <th>Order ID</th>
                        <td>${info.order_number}</td>
                     </tr>
@@ -907,29 +956,33 @@ app.post('/orders', verifyToken, async (req, res) => {
                     <th>Gender</th>
                     <td>${gender}</td>
                     </tr>
-                     <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
+                     <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? "embroideryTrue" : "noEmbroidery"}>
                     <th>Fabric</th>
                     <td>${info.line_items[0].variant_title ? info.line_items[0].variant_title : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
-                    <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
+                    <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? "embroideryTrue" : "noEmbroidery"}>
                     <th>Color</th>
-                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+                    <td class="color">${info.line_items[0].properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Color' || prop.name === 'color' || prop.name === 'color-swatches-2')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
                     <tr>
                     <th>Size</th>
-                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Sizes')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Sizes')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Sizes' || prop.name === 'sizes')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Sizes' || prop.name === 'sizes')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
-                    <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? "embroideryTrue" : "noEmbroidery"}>
+                    <tr class=${info.line_items[0].properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? "embroideryTrue" : "noEmbroidery"}>
                     <th>Embroidery</th>
-                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Embroidery')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Embroidery' || prop.name === 'NameEmb')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
                       <tr>
             <th>Matching Scrub Cap</th>
-            <td>${info.line_items[0].properties.find(prop => prop.name === 'Accessory')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${info.line_items[0].properties.find(prop => prop.name === 'Accessory' || prop.name === 'matching-scrub-cap')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
                    <tr>
             <th>Yoyo Chain Tag</th>
-            <td>${info.line_items[0].properties.find(prop => prop.name === 'Yoyo Chain Tag')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+            <td>${info.line_items[0].properties.find(prop => prop.name === 'Yoyo Chain Tag' || prop.name === 'yoyo-chain')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+          </tr>
+              <tr>
+            <th>Matching Scrub Mask</th>
+            <td>${info.line_items[0].properties.find(prop => prop.name === 'Matching Scrub Mask' || prop.name === 'matching-scrub-mask')?.value ? "✓ True" : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
           </tr>
                     <tr>
                     <th>Note</th>
@@ -937,19 +990,19 @@ app.post('/orders', verifyToken, async (req, res) => {
                     </tr>
                     <tr>
                     <th>Shirt Length</th>
-                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Shirt length' || prop.name === 'Shirt Length')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Shirt length' || prop.name === 'Shirt Length')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+                    <td>${shirtLength}</td>
                     </tr>
                     <tr>
                     <th>Trouser Length</th>
-                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Trouser Length' || prop.name === 'Trouser length')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Trouser Length' || prop.name === 'Trouser length')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+                    <td>${trouserLength}</td>
                     </tr>
                     <tr>
                     <th>Sleeve Length</th>
-                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Sleeve length' || prop.name === 'Sleeve Length')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Sleeve length' || prop.name === 'Sleeve Length')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+                    <td>${sleeveLength}</td>
                     </tr>
                     <tr>
                     <th>Trouser Style</th>
-                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Trouser Style')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Trouser Style')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
+                    <td>${info.line_items[0].properties.find(prop => prop.name === 'Trouser Style' || prop.name === 'trouser-style' || prop.name === 'custom-trouser-style')?.value ? info.line_items[0].properties.find(prop => prop.name === 'Trouser Style' || prop.name === 'trouser-style' || prop.name === 'custom-trouser-style')?.value : '<span style="font-size:0.7rem; color:red;">N/A no GPO option Found</span>'}</td>
                     </tr>
                 
      </tbody>
@@ -961,20 +1014,30 @@ app.post('/orders', verifyToken, async (req, res) => {
             <img style="display:none" src="${pantStyleImage}" alt="Pant Style Image">
             ${info.line_items[0].title === 'Men Cargo Pants' || info.line_items[0].title === 'Women Cargo Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Cargo-Pants.jpg?v=1753163517" alt="Variant Image">`
               : info.line_items[0].title === 'Men Jogger Pants' || info.line_items[0].title === 'Women Jogger Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Jogger-Pants.jpg?v=1753163518" alt="Variant Image">`
-                : info.line_items[0].title === 'Women Flarred Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517" alt="${info.line_items[0].title}">` : `<img src="${pantStyleImage}" alt='Pant Style Image'>`}
-       </div>
+                : info.line_items[0].title === 'Women Flarred Pants' || info.line_items[0].title === 'Flared Pants' ? `<img src="https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Flare-Pants.jpg?v=1753163517" alt="${info.line_items[0].title}">` : `<img src="${pantStyleImage}" alt='Pant Style Image'>`}
+       
+       
+       
+                </div>
 
         </div>
         </div>`
-        })
+        });
+         logOrderResponse({
+          orderId,
+          info,
+          time: new Date().toISOString()
+        });
       }
+
 
 
 
     })
     .catch(err => res.status(500).send('Error fetching order: ' + err.message));
+
 })
 
-app.listen(3002, () => {
-  console.log('HTTP server running on http://localhost:3002');
+app.listen(3000, () => {
+  console.log('HTTP server running on http://localhost:3000');
 });
