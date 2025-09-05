@@ -16,3 +16,5 @@ build.js
 # Ignore server response 
 server-responces.json
 server-responces
+pi.html
+findrough.js
