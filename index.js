@@ -95,40 +95,61 @@ async function getCollectionsByProductName(productName) {
 
 async function getShirtImageByProductName(productName, gender) {
   const ArrayWomen = [
-       {
-          name:"Women’s Lab Coat",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
-      },{
-          name:"Essential Hoodie - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Essential Hoodie - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Scrub Cap",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
-      },      {
-          name:"Unisex Polo Shirt - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },      {
-          name:"Unisex Polo Shirt - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },{
-          name:"Badge Reel",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
-      },{
-          name:"UniSex Underscrub - Grey",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"Mask",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
-      },
+    {
+      name: "Female Zip Collar Set",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Wev2_vol2.zip_-_1.png?v=1757076690"
+    },
+    {
+      name: "Placket Zip Set",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Wev2_vol2.zip_-_3.png?v=1757076864"
+    }, {
+      name: "Bold Trim Set",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Wev2_vol2.zip_-_2.png?v=1757076936"
+    }, {
+      name: "Extended V-Edge Set",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Wev2_vol2.zip_-_6.png?v=1757076979"
+    }, {
+      name: "Piped Duo Set",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Wev2_vol2.zip_-_5.png?v=1757077141"
+    },
+    {
+      name: "Key Neck Set",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Wev2_vol2.zip_-_4.png?v=1757077181"
+    },
+    {
+      name: "Women’s Lab Coat",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
+    }, {
+      name: "Essential Hoodie - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Essential Hoodie - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Scrub Cap",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Badge Reel",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
+    }, {
+      name: "UniSex Underscrub - Grey",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "Mask",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
+    },
     {
 
       name: "Slash Pocket Scrub Set",
@@ -387,40 +408,46 @@ async function getShirtImageByProductName(productName, gender) {
   ]
 
   const ArrayMen = [
-       {
-          name:"Lab Coat",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
-      },{
-          name:"Essential Hoodie - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Essential Hoodie - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
-      },{
-          name:"Scrub Cap",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
-      },      {
-          name:"Unisex Polo Shirt - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },      {
-          name:"Unisex Polo Shirt - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
-      },{
-          name:"Badge Reel",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
-      },{
-          name:"UniSex Underscrub - Grey",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Navy",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"UniSex Underscrub - Black",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
-      },{
-          name:"Mask",
-          src:"https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
-      },
+    {
+      name: "Zip Collar Set",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Wev2_vol2.zip_-_7.png?v=1757077097"
+    }, {
+      name: "Tri Pocket Zip Set",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/Wev2_vol2.zip_-_8.png?v=1757077320"
+    }, {
+      name: "Lab Coat",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/labcoat.png?v=1754312239"
+    }, {
+      name: "Essential Hoodie - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Essential Hoodie - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/hoodie.png?v=1754312216"
+    }, {
+      name: "Scrub Cap",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/cap.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Unisex Polo Shirt - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/poloshirt.png?v=1754312215"
+    }, {
+      name: "Badge Reel",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/badge_reel.png?v=1754312216"
+    }, {
+      name: "UniSex Underscrub - Grey",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Navy",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "UniSex Underscrub - Black",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/underscrubs.png?v=1754312215"
+    }, {
+      name: "Mask",
+      src: "https://cdn.shopify.com/s/files/1/0631/3174/6535/files/mask.png?v=1754312215"
+    },
     {
 
       name: "Basic V- Neckline Scrub Set",
@@ -593,7 +620,6 @@ async function getShirtImageByProductName(productName, gender) {
     },
 
   ]
-  
   
   const unisexArray =[
       {
